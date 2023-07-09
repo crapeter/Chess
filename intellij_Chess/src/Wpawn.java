@@ -44,12 +44,12 @@ public class Wpawn implements ActionListener, Images {
             }
         }
         else {
-            if (!pieceLoc.containsKey(loc - 8)) {
-                buttons[loc - 8].setText("a");
+            if (pieceLoc.containsKey(loc - 8)) {
+                buttons[loc - 8].setText("b");
                 buttons[loc - 8].setForeground(Color.yellow);
             }
             else {
-                buttons[loc - 8].setText("b");
+                buttons[loc - 8].setText("a");
                 buttons[loc - 8].setForeground(Color.red);
             }
         }
