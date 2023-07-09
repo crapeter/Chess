@@ -54,21 +54,32 @@ public class Wpawn implements ActionListener, Images {
         }
     }
 
-    public static void diagDisplay(int loc, JButton[] buttons) {
-        if (loc % 8 == 0) {
-            buttons[loc - 7].setText("a");
-            buttons[loc - 7].setForeground(Color.red);
-        }
-        else if (loc % 8 == 7) {
-            buttons[loc - 9].setText("a");
-            buttons[loc - 9].setForeground(Color.red);
-        }
-        else {
-            buttons[loc - 9].setText("a");
-            buttons[loc - 9].setForeground(Color.red);
-
-            buttons[loc - 7].setText("a");
-            buttons[loc - 7].setForeground(Color.red);
+    public static void diagDisplay(int loc, JButton[] buttons, HashMap<Integer, String> pieceLoc) {
+        for (String piece : blackPieces) {
+            if (pieceLoc.containsKey(loc - 7)) {
+                if (pieceLoc.get(loc - 7).equals(piece) && loc % 8 != 7) {
+                    buttons[loc - 7].setText("a");
+                    buttons[loc - 7].setForeground(Color.red);
+                }
+            }
+            if (pieceLoc.containsKey(loc - 9)) {
+                if (pieceLoc.get(loc - 9).equals(piece) && loc % 8 != 0) {
+                    buttons[loc - 9].setText("a");
+                    buttons[loc - 9].setForeground(Color.red);
+                }
+            }
+            if (pieceLoc.containsKey(loc - 1) && loc / 8 == 3) {
+                if (pieceLoc.get(loc - 1).equals(piece) && loc % 8 != 0) {
+                    buttons[loc - 9].setText("a");
+                    buttons[loc - 9].setForeground(Color.red);
+                }
+            }
+            if (pieceLoc.containsKey(loc + 1) && loc / 8 == 3) {
+                if (pieceLoc.get(loc + 1).equals(piece) && loc % 8 != 7) {
+                    buttons[loc - 7].setText("a");
+                    buttons[loc - 7].setForeground(Color.red);
+                }
+            }
         }
     }
 
