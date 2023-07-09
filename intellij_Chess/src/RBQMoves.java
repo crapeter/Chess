@@ -101,6 +101,5 @@ public abstract class RBQMoves {
     public static void display(int loc, JButton[] buttons, Color color) {
         buttons[loc].setText("a");
         buttons[loc].setForeground(color);
-
     }
 }
