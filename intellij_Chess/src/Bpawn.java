@@ -54,7 +54,7 @@ public class Bpawn implements ActionListener, Images {
         }
     }
 
-    public static void diagDisplay(int loc, JButton[] buttons) {
+    public static void diagDisplay(int loc, JButton[] buttons, HashMap<Integer, String> pieceLoc) {
         for (String piece: whitePieces) {
             if (pieceLoc.containsKey(loc + 7)) {
                 if (pieceLoc.get(loc + 7).equals(piece) && loc % 8 != 0) {
