@@ -73,31 +73,22 @@ public class BuildChess implements ActionListener, Images {
         for (int i = 0; i < 64; i++) {
             if (i == 0 || i == 7)
                 placePiece(i, bRook, "bRook");
-
             else if (i == 1 || i == 6)
                 placePiece(i, bKnight, "bKnight");
-
             else if (i == 2 || i == 5)
                 placePiece(i, bBishop, "bBishop");
-
             else if (i == 3)
                 placePiece(i, bQueen, "bQueen");
-
             else if (i == 4)
                 placePiece(i, bKing, "bKing");
-
-            if (i == 56 || i == 63)
+            else if (i == 56 || i == 63)
                 placePiece(i, wRook, "wRook");
-
             else if (i == 57 || i == 62)
                 placePiece(i, wKnight, "wKnight");
-
             else if (i == 58 || i == 61)
                 placePiece(i, wBishop, "wBishop");
-
             else if (i == 59)
                 placePiece(i, wQueen, "wQueen");
-
             else if (i == 60)
                 placePiece(i, wKing, "wKing");
         }
