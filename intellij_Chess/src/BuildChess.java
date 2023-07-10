@@ -150,9 +150,7 @@ public class BuildChess implements ActionListener, Images {
                             grabPiece(i, wRook);
                         else
                             grabPiece(i, bRook);
-
                         Rook.move(location, buttons, pieceLoc);
-
                         pickUpPiece(i, pieceHeld);
                         break;
                     }
@@ -161,9 +159,7 @@ public class BuildChess implements ActionListener, Images {
                             grabPiece(i, wKnight);
                         else
                             grabPiece(i, bKnight);
-
                         Knight.move(location, buttons, pieceLoc);
-
                         pickUpPiece(i, pieceHeld);
                         break;
                     }
@@ -172,9 +168,7 @@ public class BuildChess implements ActionListener, Images {
                             grabPiece(i, wBishop);
                         else
                             grabPiece(i, bBishop);
-
                         Bishop.move(location, buttons, pieceLoc);
-
                         pickUpPiece(i, pieceHeld);
                         break;
                     }
@@ -183,9 +177,7 @@ public class BuildChess implements ActionListener, Images {
                             grabPiece(i, wQueen);
                         else
                             grabPiece(i, bQueen);
-
                         Queen.move(location, buttons, pieceLoc);
-
                         pickUpPiece(i, pieceHeld);
                         break;
                     }
@@ -194,26 +186,20 @@ public class BuildChess implements ActionListener, Images {
                             grabPiece(i, wKing);
                         else
                             grabPiece(i, bKing);
-
                         King.move(location, buttons, pieceLoc);
                         Castle.canCastle(location, buttons, pieceLoc, canWhiteCastle, canBlackCastle);
-
                         pickUpPiece(i, pieceHeld);
                         break;
                     }
                     else if (pieceLoc.get(i).equals("bPawn")) {
                         grabPiece(i, bPawn);
-
                         Bpawn.move(location, buttons, pieceLoc);
-
                         pickUpPiece(i, pieceHeld);
                         break;
                     }
                     else if (pieceLoc.get(i).equals("wPawn")) {
                         grabPiece(i, wPawn);
-
                         Wpawn.move(location, buttons, pieceLoc);
-
                         pickUpPiece(i, pieceHeld);
                         break;
                     }
