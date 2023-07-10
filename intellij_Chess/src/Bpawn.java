@@ -4,23 +4,22 @@ import java.awt.event.ActionListener;
 import java.util.HashMap;
 import javax.swing.*;
 
-public class Bpawn implements ActionListener, Images {
+public class Bpawn extends BuildChess implements ActionListener, Images {
     public JFrame frame = new JFrame();
     public JLabel textField = new JLabel();
     public JPanel titlePanel = new JPanel();
     public JButton[] buttons = new JButton[4];
     public JPanel panel = new JPanel();
     public static String[] whitePieces = { "wBishop", "wKing", "wKnight", "wPawn", "wQueen", "wRook" };
-
     public static void move(int location, JButton[] buttons, HashMap<Integer, String> pieceLoc) {
         if (location / 8 == 1) {
             display(location, buttons, pieceLoc, true);
-            diagDisplay(location, buttons);
+            diagDisplay(location, buttons, pieceLoc);
         }
         // shows all possible moves if not first time moving
         else if (location / 8 != 7) {
             display(location, buttons, pieceLoc, false);
-            diagDisplay(location, buttons);
+            diagDisplay(location, buttons, pieceLoc);
         }
     }
 
@@ -46,11 +45,11 @@ public class Bpawn implements ActionListener, Images {
         else {
             if (pieceLoc.containsKey(loc + 8)) {
                 buttons[loc + 8].setText("b");
-                buttons[loc + 8].setForeground(Color.yellow);
+                buttons[loc + 8].setForeground(Color.red);
             }
             else {
                 buttons[loc + 8].setText("a");
-                buttons[loc + 8].setForeground(Color.red);
+                buttons[loc + 8].setForeground(Color.yellow);
             }
         }
     }
@@ -66,12 +65,16 @@ public class Bpawn implements ActionListener, Images {
                 buttons[loc + 9].setForeground(Color.red);
             }
             if (pieceLoc.containsKey(loc - 1) && pieceLoc.get(loc - 1).equals(piece) && loc % 8 != 0 && loc / 8 == 4) {
-                buttons[loc + 7].setText("a");
-                buttons[loc + 7].setForeground(Color.red);
+                if (Math.abs(whitePawnMove[0][(location - 1) % 8] - whitePawnMove[1][(location - 1) % 8]) == 16) {
+                    buttons[loc + 7].setText("a");
+                    buttons[loc + 7].setForeground(Color.red);
+                }
             }
             if (pieceLoc.containsKey(loc + 1) && pieceLoc.get(loc + 1).equals(piece) && loc % 8 != 7 && loc / 8 == 4) {
-                buttons[loc + 9].setText("a");
-                buttons[loc + 9].setForeground(Color.red);
+                if (Math.abs(whitePawnMove[0][(location + 1) % 8] - whitePawnMove[1][(location + 1) % 8]) == 16) {
+                    buttons[loc + 9].setText("a");
+                    buttons[loc + 9].setForeground(Color.red);
+                }
             }
         }
     }
