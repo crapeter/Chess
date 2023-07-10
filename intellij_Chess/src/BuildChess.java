@@ -17,8 +17,8 @@ public class BuildChess implements ActionListener, Images {
     public static final int bKingLocation = 4;
     public static final int wKingLocation = 60;
 
-    public int[][] whitePawnMove = new int[2][8];
-    public int[][] blackPawnMove = new int[2][8];
+    public static int[][] whitePawnMove = new int[2][8];
+    public static int[][] blackPawnMove = new int[2][8];
     public boolean holdingPiece = false;
     public boolean canBlackCastle = true;
     public boolean canWhiteCastle = true;
@@ -234,15 +234,13 @@ public class BuildChess implements ActionListener, Images {
                                 location = i;
                                 bPawn.displayChange();
                             }
-                            if (i == location + 7 || i == location + 9) {
-                                if (location / 8 == 4 && (location - 1) / 8 == location / 8 && pieceLoc.containsKey(location - 1)) {
-                                    enPassant(location, location - 1, i, whitePawnMove, "wPawn");
-                                }
-                                else if (location / 8 == 4 && (location + 1) / 8 == location / 8 && pieceLoc.containsKey(location + 1)) {
-                                    enPassant(location, location + 1, i, whitePawnMove, "wPawn");
-                                }
-                                else
-                                    pieceMov(location, location, icon, pieceHeld);
+                            if (i == location + 7) {
+                                pieceMov(location, i, bPawn, "bPawn");
+                                removePiece(location + 7, "wPawn");
+                            }
+                            if (i == location + 9) {
+                                pieceMov(location, i, bPawn, "bPawn");
+                                removePiece(location + 9, "wPawn");
                             }
                             else {
                                 pieceMov(location, i, icon, pieceHeld);
@@ -258,15 +256,13 @@ public class BuildChess implements ActionListener, Images {
                                 location = i;
                                 wPawn.displayChange();
                             }
-                            if (i == location - 7 || i == location - 9) {
-                                if (location / 8 == 3 && (location - 1) / 8 == location / 8 && pieceLoc.containsKey(location - 1)) {
-                                    enPassant(location, location - 1, i, blackPawnMove, "bPawn");
-                                }
-                                else if (location / 8 == 3 && (location + 1) / 8 == location / 8 && pieceLoc.containsKey(location + 1)) {
-                                    enPassant(location, location + 1, i, blackPawnMove, "bPawn");
-                                }
-                                else
-                                    pieceMov(location, location, icon, pieceHeld);
+                            if (i == location + 7) {
+                                pieceMov(location, i, wPawn, "wPawn");
+                                removePiece(location + 7, "bPawn");
+                            }
+                            if (i == location + 9) {
+                                pieceMov(location, i, wPawn, "wPawn");
+                                removePiece(location + 9, "bPawn");
                             }
                             else {
                                 pieceMov(location, i, icon, pieceHeld);
