@@ -4,23 +4,22 @@ import java.awt.event.ActionListener;
 import java.util.HashMap;
 import javax.swing.*;
 
-public class Wpawn implements ActionListener, Images {
+public class Wpawn extends BuildChess implements ActionListener, Images {
     public JFrame frame = new JFrame();
     public JLabel textField = new JLabel();
     public JPanel titlePanel = new JPanel();
     public JButton[] buttons = new JButton[4];
     public JPanel panel = new JPanel();
     public static String[] blackPieces = { "bBishop", "bKing", "bKnight", "bPawn", "bQueen", "bRook" };
-
     public static void move(int location, JButton[] buttons, HashMap<Integer, String> pieceLoc) {
         if (location / 8 == 6) {
             display(location, buttons, pieceLoc, true);
-            diagDisplay(location, buttons);
+            diagDisplay(location, buttons, pieceLoc);
         }
         // shows all possible moves if not first time moving
         else if (location / 8 != 0) {
             display(location, buttons, pieceLoc, false);
-            diagDisplay(location, buttons);
+            diagDisplay(location, buttons, pieceLoc);
         }
     }
 
@@ -46,17 +45,17 @@ public class Wpawn implements ActionListener, Images {
         else {
             if (pieceLoc.containsKey(loc - 8)) {
                 buttons[loc - 8].setText("b");
-                buttons[loc - 8].setForeground(Color.yellow);
+                buttons[loc - 8].setForeground(Color.red);
             }
             else {
                 buttons[loc - 8].setText("a");
-                buttons[loc - 8].setForeground(Color.red);
+                buttons[loc - 8].setForeground(Color.yellow);
             }
         }
     }
 
     public static void diagDisplay(int loc, JButton[] buttons, HashMap<Integer, String> pieceLoc) {
-        for (String piece : blackPieces) {
+        for (String piece: blackPieces) {
             if (pieceLoc.containsKey(loc - 7) && pieceLoc.get(loc - 7).equals(piece) && loc % 8 != 7) {
                 buttons[loc - 7].setText("a");
                 buttons[loc - 7].setForeground(Color.red);
@@ -65,13 +64,18 @@ public class Wpawn implements ActionListener, Images {
                 buttons[loc - 9].setText("a");
                 buttons[loc - 9].setForeground(Color.red);
             }
+            //checking for en passant
             if (pieceLoc.containsKey(loc - 1) && pieceLoc.get(loc - 1).equals(piece) && loc % 8 != 0 && loc / 8 == 3) {
-                buttons[loc - 9].setText("a");
-                buttons[loc - 9].setForeground(Color.red);
+                if (Math.abs(blackPawnMove[0][(location - 1) % 8] - blackPawnMove[1][(location - 1) % 8]) == 16) {
+                    buttons[loc - 9].setText("a");
+                    buttons[loc - 9].setForeground(Color.red);
+                }
             }
             if (pieceLoc.containsKey(loc + 1) && pieceLoc.get(loc + 1).equals(piece) && loc % 8 != 7 && loc / 8 == 3) {
-                buttons[loc - 7].setText("a");
-                buttons[loc - 7].setForeground(Color.red);
+                if (Math.abs(blackPawnMove[0][(location + 1) % 8] - blackPawnMove[1][(location + 1) % 8]) == 16) {
+                    buttons[loc - 7].setText("a");
+                    buttons[loc - 7].setForeground(Color.red);
+                }
             }
         }
     }
