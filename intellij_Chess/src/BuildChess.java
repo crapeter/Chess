@@ -133,13 +133,6 @@ public class BuildChess implements ActionListener, Images {
         location = loc;
         icon = newIcon;
     }
-    public void enPassant(int pawnLoc1, int pawnLoc2, int newLoc, int[][] pieceMoves, String pieceName) {
-        if (pieceLoc.get(pawnLoc2).equals(pieceName) && Math.abs((pawnLoc2) - newLoc) == 8 &&
-                Math.abs(pieceMoves[0][(pawnLoc2) % 8] - pieceMoves[1][(pawnLoc2) % 8]) == 16) {
-            pieceMov(pawnLoc1, newLoc, icon, pieceHeld);
-            removePiece(pawnLoc2, pieceName);
-        }
-    }
     public void deconstructChess() {
         for (int i = 0; i < 64; i++)
             buttons[i].removeActionListener(this);
