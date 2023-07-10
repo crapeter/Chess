@@ -24,8 +24,6 @@ public class BuildChess implements ActionListener, Images {
     public boolean canWhiteCastle = true;
     public boolean gameOver = false;
     public String pieceHeld = "";
-    public String takingPieceColor = "";
-    public String currentPieceColor = "";
     public String[] blackPieces = { "bBishop", "bKing", "bKnight", "bPawn", "bQueen", "bRook" };
     public ImageIcon icon = null;
 
@@ -279,8 +277,8 @@ public class BuildChess implements ActionListener, Images {
                         pieceMov(location, location, icon, pieceHeld);
                 }
                 else {
-                    currentPieceColor = "white";
-                    takingPieceColor = "white";
+                    String currentPieceColor = "white";
+                    String takingPieceColor = "white";
 
                     for (String piece : blackPieces) {
                         if (pieceHeld.equals(piece))
