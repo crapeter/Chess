@@ -229,18 +229,20 @@ public class BuildChess implements ActionListener, Images {
                             }
                             if (i == location + 7) {
                                 pieceMov(location, i, bPawn, "bPawn");
-                                removePiece(location + 7, "wPawn");
+                                removePiece(location - 1, "wPawn");
                             }
-                            if (i == location + 9) {
+                            else if (i == location + 9) {
                                 pieceMov(location, i, bPawn, "bPawn");
-                                removePiece(location + 9, "wPawn");
+                                removePiece(location + 1, "wPawn");
                             }
-                            else {
+                            else if (i != location + 9 && i != location + 7){
                                 pieceMov(location, i, icon, pieceHeld);
 
                                 if (blackPawnMove[1][location % 8] == 0)
                                     blackPawnMove[1][location % 8] = i;
                             }
+                            else
+                                pieceMov(location, location, icon, pieceHeld);
                         }
                         else if (pieceHeld.equals("wPawn")) {
                             if (location / 8 == 0) {
@@ -249,20 +251,22 @@ public class BuildChess implements ActionListener, Images {
                                 location = i;
                                 wPawn.displayChange();
                             }
-                            if (i == location + 7) {
+                            if (i == location - 7) {
                                 pieceMov(location, i, wPawn, "wPawn");
-                                removePiece(location + 7, "bPawn");
+                                removePiece(location + 1, "bPawn");
                             }
-                            if (i == location + 9) {
+                            else if (i == location - 9) {
                                 pieceMov(location, i, wPawn, "wPawn");
-                                removePiece(location + 9, "bPawn");
+                                removePiece(location - 1, "bPawn");
                             }
-                            else {
+                            else if (i != location - 9 && i != location - 7){
                                 pieceMov(location, i, icon, pieceHeld);
 
                                 if (whitePawnMove[1][location % 8] == 0)
                                     whitePawnMove[1][location % 8] = i;
                             }
+                            else
+                                pieceMov(location, location, icon, pieceHeld);
                         }
                         else if (pieceHeld.equals("wKing") && (i == 57 || i == 62) && location == wKingLocation && canWhiteCastle) {
                             if (i == 57)
