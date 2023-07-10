@@ -279,26 +279,15 @@ public class BuildChess implements ActionListener, Images {
                         pieceMov(location, location, icon, pieceHeld);
                 }
                 else {
-                    boolean isCurrentPieceBlack = false;
-                    boolean isTakingPieceBlack = false;
+                    currentPieceColor = "white";
+                    takingPieceColor = "white";
 
                     for (String piece : blackPieces) {
                         if (pieceHeld.equals(piece))
-                            isCurrentPieceBlack = true;
-
+                            currentPieceColor = "black";
                         if (pieceLoc.get(i).equals(piece))
-                            isTakingPieceBlack = true;
+                            takingPieceColor = "black";
                     }
-
-                    if (isCurrentPieceBlack)
-                        currentPieceColor = "black";
-                    else
-                        currentPieceColor = "white";
-
-                    if (isTakingPieceBlack)
-                        takingPieceColor = "black";
-                    else
-                        takingPieceColor = "white";
 
                     if (!currentPieceColor.equals(takingPieceColor) && buttons[i].getText().equals("a")) {
                         if (pieceLoc.get(i).equals("bKing") || pieceLoc.get(i).equals("wKing"))
