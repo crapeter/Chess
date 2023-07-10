@@ -64,6 +64,7 @@ public class Bpawn extends BuildChess implements ActionListener, Images {
                 buttons[loc + 9].setText("a");
                 buttons[loc + 9].setForeground(Color.red);
             }
+            //checking for en passant
             if (pieceLoc.containsKey(loc - 1) && pieceLoc.get(loc - 1).equals(piece) && loc % 8 != 0 && loc / 8 == 4) {
                 if (Math.abs(whitePawnMove[0][(location - 1) % 8] - whitePawnMove[1][(location - 1) % 8]) == 16) {
                     buttons[loc + 7].setText("a");
