@@ -32,7 +32,7 @@ public class Move extends BuildChess{
             Queen.move(location, buttons, pieceLoc);
             pickUpPiece(loc, pieceHeld);
         }
-        else if (pieceLoc.get(loc).equals("wKing") || pieceLoc.get(loc).equals("wKing")) {
+        else if (pieceLoc.get(loc).equals("wKing") || pieceLoc.get(loc).equals("bKing")) {
             if (pieceLoc.get(loc).equals("wKing"))
                 grabPiece(loc, wKing);
             else
