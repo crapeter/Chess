@@ -11,6 +11,7 @@ public class Bpawn extends BuildChess implements ActionListener, Images {
     public JButton[] buttons = new JButton[4];
     public JPanel panel = new JPanel();
     public static String[] whitePieces = { "wBishop", "wKing", "wKnight", "wPawn", "wQueen", "wRook" };
+    
     public static void move(int location, JButton[] buttons, HashMap<Integer, String> pieceLoc) {
         if (location / 8 == 1) {
             display(location, buttons, pieceLoc, true);
