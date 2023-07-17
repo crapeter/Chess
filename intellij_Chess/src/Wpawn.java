@@ -11,6 +11,7 @@ public class Wpawn extends BuildChess implements ActionListener, Images {
     public JButton[] buttons = new JButton[4];
     public JPanel panel = new JPanel();
     public static String[] blackPieces = { "bBishop", "bKing", "bKnight", "bPawn", "bQueen", "bRook" };
+    
     public static void move(int location, JButton[] buttons, HashMap<Integer, String> pieceLoc) {
         if (location / 8 == 6) {
             display(location, buttons, pieceLoc, true);
