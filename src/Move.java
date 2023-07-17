@@ -72,14 +72,12 @@ public class Move extends BuildChess{
                     swapPiece(location, loc, bPawn, "bPawn");
                     removePiece(location + 1, "wPawn");
                 }
-                else if (loc != location + 9 && loc != location + 7){
+                else {
                     swapPiece(location, loc, icon, pieceHeld);
 
                     if (blackPawnMove[1][location % 8] == 0)
                         blackPawnMove[1][location % 8] = loc;
                 }
-                else
-                    swapPiece(location, location, icon, pieceHeld);
             }
             else if (pieceHeld.equals("wPawn")) {
                 if (location / 8 == 0) {
@@ -96,14 +94,12 @@ public class Move extends BuildChess{
                     swapPiece(location, loc, wPawn, "wPawn");
                     removePiece(location - 1, "bPawn");
                 }
-                else if (loc != location - 9 && loc != location - 7){
+                else {
                     swapPiece(location, loc, icon, pieceHeld);
 
                     if (whitePawnMove[1][location % 8] == 0)
                         whitePawnMove[1][location % 8] = loc;
                 }
-                else
-                    swapPiece(location, location, icon, pieceHeld);
             }
             else if (pieceHeld.equals("wKing") && (loc == 57 || loc == 62) && location == wKingLocation && canWhiteCastle) {
                 if (loc == 57)
