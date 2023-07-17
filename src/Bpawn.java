@@ -27,30 +27,23 @@ public class Bpawn extends BuildChess implements ActionListener, Images {
     public static void display(int loc, JButton[] buttons, HashMap<Integer, String> pieceLoc, boolean firstMove) {
         if (firstMove) {
             if (pieceLoc.containsKey(loc + 8)) {
-                buttons[loc + 8].setText("b");
-                buttons[loc + 8].setForeground(Color.red);
+                blockPawn(loc + 8, buttons, Color.red);
             }
             else if (pieceLoc.containsKey(loc + 16)) {
-                buttons[loc + 8].setText("a");
-                buttons[loc + 8].setForeground(Color.yellow);
-                buttons[loc + 16].setText("b");
-                buttons[loc + 16].setForeground(Color.red);
+                displayMoves(loc + 8, buttons, Color.yellow);
+                blockPawn(loc + 16, buttons, Color.red);
             }
             else {
-                buttons[loc + 8].setText("a");
-                buttons[loc + 8].setForeground(Color.yellow);
-                buttons[loc + 16].setText("a");
-                buttons[loc + 16].setForeground(Color.yellow);
+                displayMoves(loc + 8, buttons, Color.yellow);
+                displayMoves(loc + 16, buttons, Color.yellow);
             }
         }
         else {
             if (pieceLoc.containsKey(loc + 8)) {
-                buttons[loc + 8].setText("b");
-                buttons[loc + 8].setForeground(Color.red);
+                blockPawn(loc + 8, buttons, Color.red);
             }
             else {
-                buttons[loc + 8].setText("a");
-                buttons[loc + 8].setForeground(Color.yellow);
+                displayMoves(loc + 8, buttons, Color.yellow);
             }
         }
     }
@@ -58,24 +51,20 @@ public class Bpawn extends BuildChess implements ActionListener, Images {
     public static void diagDisplay(int loc, JButton[] buttons, HashMap<Integer, String> pieceLoc) {
         for (String piece: whitePieces) {
             if (pieceLoc.containsKey(loc + 7) && pieceLoc.get(loc + 7).equals(piece) && loc % 8 != 0) {
-                buttons[loc + 7].setText("a");
-                buttons[loc + 7].setForeground(Color.red);
+                displayMoves(loc + 7, buttons, Color.red);
             }
             if (pieceLoc.containsKey(loc + 9) && pieceLoc.get(loc + 9).equals(piece) && loc % 8 != 7) {
-                buttons[loc + 9].setText("a");
-                buttons[loc + 9].setForeground(Color.red);
+                displayMoves(loc + 9, buttons, Color.red);
             }
             //checking for en passant
             if (pieceLoc.containsKey(loc - 1) && pieceLoc.get(loc - 1).equals(piece) && loc % 8 != 0 && loc / 8 == 4) {
                 if (Math.abs(whitePawnMove[0][(location - 1) % 8] - whitePawnMove[1][(location - 1) % 8]) == 16) {
-                    buttons[loc + 7].setText("a");
-                    buttons[loc + 7].setForeground(Color.red);
+                    displayMoves(loc + 7, buttons, Color.red);
                 }
             }
             if (pieceLoc.containsKey(loc + 1) && pieceLoc.get(loc + 1).equals(piece) && loc % 8 != 7 && loc / 8 == 4) {
                 if (Math.abs(whitePawnMove[0][(location + 1) % 8] - whitePawnMove[1][(location + 1) % 8]) == 16) {
-                    buttons[loc + 9].setText("a");
-                    buttons[loc + 9].setForeground(Color.red);
+                    displayMoves(loc + 9, buttons, Color.red);
                 }
             }
         }
