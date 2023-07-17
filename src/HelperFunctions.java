@@ -40,4 +40,8 @@ public abstract class HelperFunctions implements SetupVars{
         buttons[loc].setText("a");
         buttons[loc].setForeground(color);
     }
+    public static void blockPawn(int loc, JButton[] buttons, Color color) {
+        buttons[loc].setText("b");
+        buttons[loc].setForeground(color);
+    }
 }
