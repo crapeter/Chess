@@ -6,8 +6,6 @@ import javax.swing.*;
 
 public class BuildChess extends Main implements ActionListener, Images {
 
-
-
     public static int location = 0;
     public static final int bKingLocation = 4;
     public static final int wKingLocation = 60;
