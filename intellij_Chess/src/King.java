@@ -23,7 +23,7 @@ public class King {
         canPlace(pos9, pos9 / 8, location / 8, buttons, pieceLoc);
     }
 
-    public static void canPlace(int loc,int location1, int location2, JButton[] buttons, HashMap<Integer, String> pieceLoc) {
+    public static void canPlace(int loc, int location1, int location2, JButton[] buttons, HashMap<Integer, String> pieceLoc) {
         if (0 <= loc && loc < 64 && Math.abs(location1 - location2) == 1)
             display(loc, buttons, pieceLoc);
     }
