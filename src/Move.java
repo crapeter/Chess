@@ -1,7 +1,5 @@
 public class Move extends BuildChess{
     public static void grab(int loc) {
-        boolean canWhiteCastle = (canWhiteCastle1 || canWhiteCastle2);
-        boolean canBlackCastle = (canBlackCastle1 || canBlackCastle2);
         switch (pieceLoc.get(loc)) {
             case "wPawn" -> {
                 grabPiece(loc, wPawn);
@@ -16,13 +14,13 @@ public class Move extends BuildChess{
             case "wKing" -> {
                 grabPiece(loc, wKing);
                 King.move(location, buttons, pieceLoc);
-                Castle.canCastle(location, buttons, pieceLoc, canWhiteCastle, canBlackCastle);
+                Castle.canCastle(location, buttons, pieceLoc);
                 pickUpPiece(loc, pieceHeld);
             }
             case "bKing" -> {
                 grabPiece(loc, bKing);
                 King.move(location, buttons, pieceLoc);
-                Castle.canCastle(location, buttons, pieceLoc, canWhiteCastle, canBlackCastle);
+                Castle.canCastle(location, buttons, pieceLoc);
                 pickUpPiece(loc, pieceHeld);
             }
             case "bQueen" -> {
