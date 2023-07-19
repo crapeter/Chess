@@ -57,7 +57,21 @@ public class Move extends BuildChess{
             swapPiece(location, location, icon, pieceHeld);
         }
         else {
-            if ( !pieceHeld.equals("bPawn") && !pieceHeld.equals("wPawn") && !pieceHeld.equals("bKing") && !pieceHeld.equals("wKing") ) {
+            if (!pieceHeld.equals("bPawn") && !pieceHeld.equals("wPawn")) {
+                if (canWhiteCastle && pieceHeld.equals("wKing")) {
+                    if (loc == 57)
+                        swapPiece(56, 58, wRook, "wRook");
+                    else if (loc == 62)
+                        swapPiece(63, 61, wRook, "wRook");
+                    canWhiteCastle = false;
+                }
+                if (canBlackCastle && pieceHeld.equals("bKing")) {
+                    if (loc == 1)
+                        swapPiece(0, 2, bRook, "bRook");
+                    else if (loc == 6)
+                        swapPiece(7, 5, bRook, "bRook");
+                    canBlackCastle = false;
+                }
                 swapPiece(location, loc, icon, pieceHeld);
             }
             else if (pieceHeld.equals("bPawn")) {
@@ -72,6 +86,10 @@ public class Move extends BuildChess{
                     swapPiece(location, loc, bPawn, "bPawn");
                     removePiece(location + 1, "wPawn");
                 }
+                else if (loc == location + 9) {
+                    swapPiece(location, loc, wPawn, "wPawn");
+                    removePiece(location - 1, "bPawn");
+                }
                 else {
                     swapPiece(location, loc, icon, pieceHeld);
 
@@ -79,7 +97,7 @@ public class Move extends BuildChess{
                         blackPawnMove[1][location % 8] = loc;
                 }
             }
-            else if (pieceHeld.equals("wPawn")) {
+            else {
                 if (location / 8 == 0) {
                     Wpawn wPawn = new Wpawn();
                     removePiece(location, "wPawn");
@@ -100,24 +118,6 @@ public class Move extends BuildChess{
                     if (whitePawnMove[1][location % 8] == 0)
                         whitePawnMove[1][location % 8] = loc;
                 }
-            }
-            else if (pieceHeld.equals("wKing") && (loc == 57 || loc == 62) && location == wKingLocation && canWhiteCastle) {
-                if (loc == 57)
-                    swapPiece(56, 58, wRook, "wRook");
-                else
-                    swapPiece(63, 61, wRook, "wRook");
-
-                swapPiece(location, loc, icon, pieceHeld);
-                canWhiteCastle = false;
-            }
-            else if (pieceHeld.equals("bKing") && (loc == 1 || loc == 6) && location == bKingLocation && canBlackCastle) {
-                if (loc == 1)
-                    swapPiece(0, 2, bRook, "bRook");
-                else
-                    swapPiece(7, 5, bRook, "bRook");
-
-                swapPiece(location, loc, icon, pieceHeld);
-                canBlackCastle = false;
             }
         }
     }
