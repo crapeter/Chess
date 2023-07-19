@@ -41,7 +41,4 @@ public class Draw implements Images, SetupVars{
         frame.add(panel);
         frame.setVisible(true);
     }
-    public static void drawPawn() {
-
-    }
 }
