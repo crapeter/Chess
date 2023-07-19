@@ -1,55 +1,68 @@
 public class Move extends BuildChess{
     public static void grab(int loc) {
-        if (pieceLoc.get(loc).equals("wRook") || pieceLoc.get(loc).equals("bRook")) {
-            if (pieceLoc.get(loc).equals("wRook"))
-                grabPiece(loc, wRook);
-            else
-                grabPiece(loc, bRook);
-            Rook.move(location, buttons, pieceLoc);
-            pickUpPiece(loc, pieceHeld);
-        }
-        else if (pieceLoc.get(loc).equals("wKnight") || pieceLoc.get(loc).equals("bKnight")) {
-            if (pieceLoc.get(loc).equals("wKnight"))
-                grabPiece(loc, wKnight);
-            else
-                grabPiece(loc, bKnight);
-            Knight.move(location, buttons, pieceLoc);
-            pickUpPiece(loc, pieceHeld);
-        }
-        else if (pieceLoc.get(loc).equals("wBishop") || pieceLoc.get(loc).equals("bBishop")) {
-            if (pieceLoc.get(loc).equals("wBishop"))
-                grabPiece(loc, wBishop);
-            else
-                grabPiece(loc, bBishop);
-            Bishop.move(location, buttons, pieceLoc);
-            pickUpPiece(loc, pieceHeld);
-        }
-        else if (pieceLoc.get(loc).equals("wQueen") || pieceLoc.get(loc).equals("bQueen")) {
-            if (pieceLoc.get(loc).equals("wQueen"))
-                grabPiece(loc, wQueen);
-            else
-                grabPiece(loc, bQueen);
-            Queen.move(location, buttons, pieceLoc);
-            pickUpPiece(loc, pieceHeld);
-        }
-        else if (pieceLoc.get(loc).equals("wKing") || pieceLoc.get(loc).equals("bKing")) {
-            if (pieceLoc.get(loc).equals("wKing"))
+        switch (pieceLoc.get(loc)) {
+            case "wPawn" -> {
+                grabPiece(loc, wPawn);
+                Wpawn.move(location, buttons, pieceLoc);
+                pickUpPiece(loc, pieceHeld);
+            }
+            case "bPawn" -> {
+                grabPiece(loc, bPawn);
+                Bpawn.move(location, buttons, pieceLoc);
+                pickUpPiece(loc, pieceHeld);
+            }
+            case "wKing" -> {
                 grabPiece(loc, wKing);
-            else
+                King.move(location, buttons, pieceLoc);
+                Castle.canCastle(location, buttons, pieceLoc, canWhiteCastle, canBlackCastle);
+                pickUpPiece(loc, pieceHeld);
+            }
+            case "bKing" -> {
                 grabPiece(loc, bKing);
-            King.move(location, buttons, pieceLoc);
-            Castle.canCastle(location, buttons, pieceLoc, canWhiteCastle, canBlackCastle);
-            pickUpPiece(loc, pieceHeld);
-        }
-        else if (pieceLoc.get(loc).equals("bPawn")) {
-            grabPiece(loc, bPawn);
-            Bpawn.move(location, buttons, pieceLoc);
-            pickUpPiece(loc, pieceHeld);
-        }
-        else if (pieceLoc.get(loc).equals("wPawn")) {
-            grabPiece(loc, wPawn);
-            Wpawn.move(location, buttons, pieceLoc);
-            pickUpPiece(loc, pieceHeld);
+                King.move(location, buttons, pieceLoc);
+                Castle.canCastle(location, buttons, pieceLoc, canWhiteCastle, canBlackCastle);
+                pickUpPiece(loc, pieceHeld);
+            }
+            case "bQueen" -> {
+                grabPiece(loc, bQueen);
+                Queen.move(location, buttons, pieceLoc);
+                pickUpPiece(loc, pieceHeld);
+            }
+            case "wQueen" -> {
+                grabPiece(loc, wQueen);
+                Queen.move(location, buttons, pieceLoc);
+                pickUpPiece(loc, pieceHeld);
+            }
+            case "wBishop" -> {
+                grabPiece(loc, wBishop);
+                Bishop.move(location, buttons, pieceLoc);
+                pickUpPiece(loc, pieceHeld);
+            }
+            case "bBishop" -> {
+                grabPiece(loc, bBishop);
+                Bishop.move(location, buttons, pieceLoc);
+                pickUpPiece(loc, pieceHeld);
+            }
+            case "wKnight" -> {
+                grabPiece(loc, wKnight);
+                Knight.move(location, buttons, pieceLoc);
+                pickUpPiece(loc, pieceHeld);
+            }
+            case "bKnight" -> {
+                grabPiece(loc, bKnight);
+                Knight.move(location, buttons, pieceLoc);
+                pickUpPiece(loc, pieceHeld);
+            }
+            case "wRook" -> {
+                grabPiece(loc, wRook);
+                Rook.move(location, buttons, pieceLoc);
+                pickUpPiece(loc, pieceHeld);
+            }
+            case "bRook" -> {
+                grabPiece(loc, bRook);
+                Rook.move(location, buttons, pieceLoc);
+                pickUpPiece(loc, pieceHeld);
+            }
         }
     }
     public static void empty(int loc) {
