@@ -7,52 +7,44 @@ public class Castle extends HelperFunctions {
         int count1 = 0;
         int count2 = 0;
         if (canBlackCastle1) {
-            if (location == bKingLocation && pieceLoc.get(location).equals("bKing")) {
-                for (int i = location - 1; i > 0; i--) {
-                    if (pieceLoc.containsKey(i))
-                        break;
-                    else
-                        count1++;
-                }
-                if (count1 == 3 && pieceLoc.containsKey(0) && pieceLoc.get(0).equals("bRook"))
-                    displayMoves(1, buttons, Color.yellow);
+            for (int i = location - 1; i > 0; i--) {
+                if (pieceLoc.containsKey(i))
+                    break;
+                else
+                    count1++;
             }
+            if (count1 == 3 && pieceLoc.containsKey(0) && pieceLoc.get(0).equals("bRook"))
+                displayMoves(1, buttons, Color.yellow);
         }
         if (canBlackCastle2) {
-            if (location == bKingLocation && pieceLoc.get(location).equals("bKing")) {
-                for (int i = location + 1; i < 7; i++) {
-                    if (pieceLoc.containsKey(i))
-                        break;
-                    else
-                        count2++;
-                }
-                if (count2 == 2 && pieceLoc.containsKey(7) && pieceLoc.get(7).equals("bRook"))
-                    displayMoves(6, buttons, Color.yellow);
+            for (int i = location + 1; i < 7; i++) {
+                if (pieceLoc.containsKey(i))
+                    break;
+                else
+                    count2++;
             }
+            if (count2 == 2 && pieceLoc.containsKey(7) && pieceLoc.get(7).equals("bRook"))
+                displayMoves(6, buttons, Color.yellow);
         }
         if (canWhiteCastle1) {
-            if (location == wKingLocation && pieceLoc.get(location).equals("wKing")) {
-                for (int i = location - 1; i > 56; i--) {
-                    if (pieceLoc.containsKey(i))
-                        break;
-                    else
-                        count1++;
-                }
-                if (count1 == 3 && pieceLoc.containsKey(56) && pieceLoc.get(56).equals("wRook"))
-                    displayMoves(57, buttons, Color.yellow);
+            for (int i = location - 1; i > 56; i--) {
+                if (pieceLoc.containsKey(i))
+                    break;
+                else
+                    count1++;
             }
+            if (count1 == 3 && pieceLoc.containsKey(56) && pieceLoc.get(56).equals("wRook"))
+                displayMoves(57, buttons, Color.yellow);
         }
         if (canWhiteCastle2) {
-            if (location == wKingLocation && pieceLoc.get(location).equals("wKing")) {
-                for (int i = location + 1; i < 63; i++) {
-                    if (pieceLoc.containsKey(i))
-                        break;
-                    else
-                        count2++;
-                }
-                if (count2 == 2 && pieceLoc.containsKey(63) && pieceLoc.get(63).equals("wRook"))
-                    displayMoves(62, buttons, Color.yellow);
+            for (int i = location + 1; i < 63; i++) {
+                if (pieceLoc.containsKey(i))
+                    break;
+                else
+                    count2++;
             }
+            if (count2 == 2 && pieceLoc.containsKey(63) && pieceLoc.get(63).equals("wRook"))
+                displayMoves(62, buttons, Color.yellow);
         }
     }
 }
