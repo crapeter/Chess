@@ -9,11 +9,9 @@ public class BuildChess extends HelperFunctions implements ActionListener, Setup
     public void placePieces() {
         for (int i = 0; i < 64; i++) {
             buttons[i].addActionListener(this);
-            if (i / 8 == 1) {
-                placePiece(i, bPawn, "bPawn");
-            }
-            else if (i / 8 == 6) {
-                placePiece(i, wPawn, "wPawn");
+            switch (i / 8) {
+                case 1 -> placePiece(i, bPawn, "bPawn");
+                case 6 -> placePiece(i, wPawn, "wPawn");
             }
             switch (i) {
                 case 0, 7 -> placePiece(i, bRook, "bRook");
