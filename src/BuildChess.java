@@ -58,8 +58,10 @@ public class BuildChess extends HelperFunctions implements ActionListener, Setup
                 for (int j = 0; j < 64; j++) {
                     if (!buttons[j].getText().equals(""))
                         buttons[j].setText("");
-                    if (pieceLoc.containsKey(j) && pieceLoc.get(j).equals("bKing")) blackCount++;
-                    if (pieceLoc.containsKey(j) && pieceLoc.get(j).equals("wKing")) whiteCount++;
+                    if (pieceLoc.containsKey(j) && pieceLoc.get(j).equals("bKing")) 
+                        blackCount++;
+                    if (pieceLoc.containsKey(j) && pieceLoc.get(j).equals("wKing")) 
+                        whiteCount++;
                 }
                 if (whiteCount != blackCount) {
                     gameOver = true;
