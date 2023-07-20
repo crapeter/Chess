@@ -65,7 +65,11 @@ public class BuildChess extends HelperFunctions implements ActionListener, Setup
                     gameOver = true;
                     for (int j = 0; j < 64; j++)
                         buttons[j].removeActionListener(this);
-                    textField.setText("Game Over");
+                    if (whiteCount == 1) {
+                        textField.setText("White wins");
+                    } else {
+                        textField.setText("Black wins");
+                    }
                 }
                 System.out.println(pieceHeld + " " + i);
             }
