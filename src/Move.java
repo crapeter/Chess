@@ -70,78 +70,75 @@ public class Move extends BuildChess{
             swapPiece(location, location, icon, pieceHeld);
         }
         else {
-            if (!pieceHeld.equals("bPawn") && !pieceHeld.equals("wPawn")) {
-                if (loc == 57 && pieceHeld.equals("wKing")) {
-                    swapPiece(56, 58, wRook, "wRook");
+            checkCastle();
+            switch (pieceHeld) {
+                case "wPawn" -> {
+                    if (location / 8 == 0) {
+                        Wpawn wPawn = new Wpawn();
+                        removePiece(location, "wPawn");
+                        location = loc;
+                        wPawn.displayChange();
+                    }
+                    if (loc == location - 7) {
+                        swapPiece(location, loc, wPawn, "wPawn");
+                        removePiece(location + 1, "bPawn");
+                    }
+                    else if (loc == location - 9) {
+                        swapPiece(location, loc, wPawn, "wPawn");
+                        removePiece(location - 1, "bPawn");
+                    }
+                    else {
+                        swapPiece(location, loc, icon, pieceHeld);
+
+                        if (whitePawnMove[1][location % 8] == 0)
+                            whitePawnMove[1][location % 8] = loc;
+                    }
+                }
+                case "bPawn" -> {
+                    if (loc / 8 == 7) {
+                        Bpawn bPawn = new Bpawn();
+                        removePiece(location, "bPawn");
+                        location = loc;
+                        bPawn.displayChange();
+                    }
+                    if (loc == location + 7) {
+                        swapPiece(location, loc, bPawn, "bPawn");
+                        removePiece(location - 1, "wPawn");
+                    }
+                    else if (loc == location + 9) {
+                        swapPiece(location, loc, wPawn, "bPawn");
+                        removePiece(location + 1, "wPawn");
+                    }
+                    else {
+                        swapPiece(location, loc, icon, pieceHeld);
+
+                        if (blackPawnMove[1][location % 8] == 0)
+                            blackPawnMove[1][location % 8] = loc;
+                    }
+                }
+                case "wKing" -> {
+                    if (loc == 57) {
+                        swapPiece(56, 58, wRook, "wRook");
+                    }
+                    if (loc == 62) {
+                        swapPiece(63, 61, wRook, "wRook");
+                    }
                     swapPiece(location, loc, icon, pieceHeld);
                     canWhiteCastle1 = false;
                     canWhiteCastle2 = false;
                 }
-                if (loc == 62 && pieceHeld.equals("wKing")) {
-                    swapPiece(63, 61, wRook, "wRook");
-                    swapPiece(location, loc, icon, pieceHeld);
-                    canWhiteCastle1 = false;
-                    canWhiteCastle2 = false;
-                }
-                if (loc == 1 && pieceHeld.equals("bKing")) {
-                    swapPiece(0, 2, bRook, "bRook");
-                    swapPiece(location, loc, icon, pieceHeld);
-                    canBlackCastle1 = false;
-                    canBlackCastle2 = false;
-                }
-                if (loc == 6 && pieceHeld.equals("bKing")) {
-                    swapPiece(7, 5, bRook, "bRook");
+                case "bKing" -> {
+                    if (loc == 1) {
+                        swapPiece(0, 2, bRook, "bRook");
+                    }
+                    if (loc == 6) {
+                        swapPiece(7, 5, bRook, "bRook");
+                    }
                     swapPiece(location, loc, icon, pieceHeld);
                     canBlackCastle1 = false;
                     canBlackCastle2 = false;
                 }
-                checkCastle();
-                swapPiece(location, loc, icon, pieceHeld);
-            }
-            else if (pieceHeld.equals("bPawn")) {
-                if (loc / 8 == 7) {
-                    Bpawn bPawn = new Bpawn();
-                    removePiece(location, "bPawn");
-                    location = loc;
-                    bPawn.displayChange();
-                }
-                if (loc == location + 7) {
-                    swapPiece(location, loc, bPawn, "bPawn");
-                    swapPiece(location, loc, bPawn, "bPawn");
-                    removePiece(location + 1, "wPawn");
-                }
-                else if (loc == location + 9) {
-                    swapPiece(location, loc, wPawn, "wPawn");
-                    removePiece(location - 1, "bPawn");
-                }
-                else {
-                    swapPiece(location, loc, icon, pieceHeld);
-
-                    if (blackPawnMove[1][location % 8] == 0)
-                        blackPawnMove[1][location % 8] = loc;
-                }
-            }
-            else {
-                if (location / 8 == 0) {
-                    Wpawn wPawn = new Wpawn();
-                    removePiece(location, "wPawn");
-                    location = loc;
-                    wPawn.displayChange();
-                }
-                if (loc == location - 7) {
-                    swapPiece(location, loc, wPawn, "wPawn");
-                    removePiece(location + 1, "bPawn");
-                }
-                else if (loc == location - 9) {
-                    swapPiece(location, loc, wPawn, "wPawn");
-                    removePiece(location - 1, "bPawn");
-                }
-                else {
-                    swapPiece(location, loc, icon, pieceHeld);
-
-                    if (whitePawnMove[1][location % 8] == 0)
-                        whitePawnMove[1][location % 8] = loc;
-                }
+                default  -> swapPiece(location, loc, icon, pieceHeld);
             }
         }
     }
