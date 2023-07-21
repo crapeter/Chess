@@ -77,7 +77,7 @@ public class Move extends BuildChess{
                         Pawn pawn = new Pawn();
                         removePiece(location, "wPawn");
                         location = loc;
-                        pawn.change();
+                        pawn.change("White");
                     } else if (loc == location - 7) {
                         removePiece(location + 1, "bPawn");
                     } else if (loc == location - 9) {
@@ -92,7 +92,7 @@ public class Move extends BuildChess{
                         Pawn pawn = new Pawn();
                         removePiece(location, "bPawn");
                         location = loc;
-                        pawn.change();
+                        pawn.change("Black");
                     } else if (loc == location + 7) {
                         removePiece(location - 1, "wPawn");
                     } else if (loc == location + 9) {
@@ -138,20 +138,20 @@ public class Move extends BuildChess{
         }
 
         if (!currentPieceColor.equals(takingPieceColor) && buttons[loc].getText().equals("a")) {
-            pawnCheck(loc, 7, "bPawn", "wKing");
-            pawnCheck(loc, 0, "wPawn", "bKing");
+            pawnCheck(loc, 7, "bPawn", "wKing", "Black");
+            pawnCheck(loc, 0, "wPawn", "bKing", "White");
             swapPiece(location, loc, icon, pieceHeld);
         }
         else
             swapPiece(location, location, icon, pieceHeld);
     }
-    private static void pawnCheck(int loc, int row, String pieceName, String takeName) {
+    private static void pawnCheck(int loc, int row, String pieceName, String takeName, String color) {
         if (loc / 8 == row && pieceHeld.equals(pieceName) && !pieceLoc.get(loc).equals(takeName)) {
             removePiece(loc, pieceLoc.get(loc));
-            removePiece(location, "bPawn");
+            removePiece(location, pieceName);
             location = loc;
             Pawn pawn = new Pawn();
-            pawn.change();
+            pawn.change(color);
         }
     }
     private static void checkCastle() {
