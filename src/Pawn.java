@@ -7,11 +7,11 @@ public class Pawn extends BuildChess implements Images, ActionListener {
     public JFrame frame = new JFrame();
     public JLabel textField = new JLabel();
     public JPanel titlePanel = new JPanel();
-    public JButton[] buttons = new JButton[8];
+    public JButton[] buttons = new JButton[4];
     public JPanel panel = new JPanel();
     public void change() {
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.setSize(400, 550);
+        frame.setSize(400, 400);
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
 
@@ -25,28 +25,30 @@ public class Pawn extends BuildChess implements Images, ActionListener {
         titlePanel.setLayout(new BorderLayout());
         titlePanel.setBounds(0, 0, 800, 100);
 
-        panel.setLayout(new GridLayout(4, 2));
+        panel.setLayout(new GridLayout(2, 2));
         panel.setEnabled(false);
         panel.setBackground(Color.black);
 
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < 4; i++) {
             buttons[i] = new JButton();
             panel.add(buttons[i]);
             buttons[i].setFocusable(false);
-            if (i % 2 == 0 && pieceHeld.equals("wPawn")) {
+            if (pieceHeld.equals("wPawn")) {
                 buttons[i].addActionListener(this);
-            } else if (i % 2 == 1 && pieceHeld.equals("bPawn")) {
+                switch (i) {
+                    case 0 -> buttons[i].setText("White Queen");
+                    case 1 -> buttons[i].setText("White Knight");
+                    case 2 -> buttons[i].setText("White Bishop");
+                    case 3 -> buttons[i].setText("White Rook");
+                }
+            } else if (pieceHeld.equals("bPawn")) {
                 buttons[i].addActionListener(this);
-            }
-            switch (i) {
-                case 0 -> buttons[i].setText("White Queen");
-                case 2 -> buttons[i].setText("White Knight");
-                case 4 -> buttons[i].setText("White Bishop");
-                case 6 -> buttons[i].setText("White Rook");
-                case 1 -> buttons[i].setText("Black Queen");
-                case 3 -> buttons[i].setText("Black Knight");
-                case 5 -> buttons[i].setText("Black Bishop");
-                case 7 -> buttons[i].setText("Black Rook");
+                switch (i) {
+                    case 0 -> buttons[i].setText("Black Queen");
+                    case 1 -> buttons[i].setText("Black Knight");
+                    case 2 -> buttons[i].setText("Black Bishop");
+                    case 3 -> buttons[i].setText("Black Rook");
+                }
             }
             buttons[i].setFont(new Font("Verdana", Font.PLAIN, 20));
         }
@@ -57,7 +59,7 @@ public class Pawn extends BuildChess implements Images, ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < 4; i++) {
             if (e.getSource() == buttons[i]) {
                 switch (buttons[i].getText()) {
                     case "White Queen" -> display("wQueen", wQueen);
