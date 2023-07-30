@@ -3,12 +3,17 @@ import java.util.stream.IntStream;
 
 public class King extends HelperFunctions{
     public static void move() {
-        int[] kingLocs = {location - 9, location - 8, location - 7, location - 1,
-                          location + 1, location + 7, location + 8, location + 9};
-        IntStream.range(0, 8)
-                .filter(i -> 0 <= kingLocs[i] && kingLocs[i] < 64)
-                .mapToObj(i -> new Check(kingLocs[i]))
+        int[] kingLoc1 = {location - 1, location + 1};
+        IntStream.range(0, 2)
+                .filter(i -> 0 <= kingLoc1[i] && kingLoc1[i] < 64 && inLine(kingLoc1[i], 0))
+                .mapToObj(i -> new Check(kingLoc1[i]))
                 .forEach(Check::checkLoc);
+        int[] kingLoc2 = {location - 9, location - 8, location - 7, location + 7, location + 8, location + 9};
+        IntStream.range(0, 6)
+                .filter(i -> 0 <= kingLoc2[i] && kingLoc2[i] < 64 && inLine(kingLoc2[i], 1))
+                .mapToObj(i -> new Check(kingLoc2[i]))
+                .forEach(Check::checkLoc);
+
     }
     public static void castle() {
         if (canBlackCastle1) {
@@ -55,5 +60,8 @@ public class King extends HelperFunctions{
             if (count2 == 2 && pieceLoc.containsKey(63) && pieceLoc.get(63).equals("wRook") && pieceHeld.equals("wKing"))
                 displayMoves(62, buttons, Color.yellow);
         }
+    }
+    private static boolean inLine(int locGiven, int distance){
+        return Math.abs(location / 8 - locGiven / 8) == distance;
     }
 }
