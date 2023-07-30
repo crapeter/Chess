@@ -1,34 +1,16 @@
 import java.awt.*;
 
 class Check extends HelperFunctions implements SetupVars{
-    Integer kingLoc = null;
+    int kingLoc;
 
     public Check(int loc) {
-        if (loc == location - 9 && Math.abs(location/8 - loc/8) == 1) {
-            this.kingLoc = loc;
-        } else if (loc == location - 8 && Math.abs(location/8 - loc/8) == 1) {
-            this.kingLoc = loc;
-        } else if (loc == location - 7 && Math.abs(location/8 - loc/8) == 1) {
-            this.kingLoc = loc;
-        } else if (loc == location - 1 && Math.abs(location/8 - loc/8) == 0) {
-            this.kingLoc = loc;
-        } else if (loc == location + 1 && Math.abs(location/8 - loc/8) == 0) {
-            this.kingLoc = loc;
-        } else if (loc == location + 7 && Math.abs(location/8 - loc/8) == 1) {
-            this.kingLoc = loc;
-        } else if (loc == location + 8 && Math.abs(location/8 - loc/8) == 1) {
-            this.kingLoc = loc;
-        } else if (loc == location + 9 && Math.abs(location/8 - loc/8) == 1) {
-            this.kingLoc = loc;
-        }
+        this.kingLoc = loc;
     }
     public void checkLoc() {
-        if (kingLoc != null) {
-            if (up(kingLoc) && down(kingLoc) && left(kingLoc) && right(kingLoc)
-                    && upRight(kingLoc) && upLeft(kingLoc) && downRight(kingLoc) && downLeft(kingLoc)
-                    && checkKnight(kingLoc) && checkPawn(kingLoc)) {
-                displayMoves(kingLoc, buttons, Color.yellow);
-            }
+        if (up(kingLoc) && down(kingLoc) && left(kingLoc) && right(kingLoc)
+                && upRight(kingLoc) && upLeft(kingLoc) && downRight(kingLoc) && downLeft(kingLoc)
+                && checkKnight(kingLoc) && checkPawn(kingLoc)) {
+            displayMoves(kingLoc, buttons, Color.yellow);
         }
     }
     public boolean up(int loc){
