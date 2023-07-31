@@ -91,7 +91,7 @@ class Check extends HelperFunctions implements SetupVars{
     }
     public boolean upRight(int loc){
         for (int i = loc; i >= 0; i -= 7) {
-            if (i == loc) continue;
+            if (i == loc && i % 8 != 0) continue;
             if (i % 8 == 0) break;
             if (pieceHeld.equals("wKing") && pieceLoc.containsKey(i)) {
                 if (pieceLoc.get(i).equals("bQueen") || pieceLoc.get(i).equals("bBishop")) {
@@ -111,7 +111,7 @@ class Check extends HelperFunctions implements SetupVars{
     }
     public boolean upLeft(int loc){
         for (int i = loc; i >= 0; i -= 9) {
-            if (i == loc) continue;
+            if (i == loc && i % 8 != 7) continue;
             if (i % 8 == 7) break;
             if (pieceHeld.equals("wKing") && pieceLoc.containsKey(i)) {
                 if (pieceLoc.get(i).equals("bQueen") || pieceLoc.get(i).equals("bBishop")) {
@@ -151,7 +151,7 @@ class Check extends HelperFunctions implements SetupVars{
     }
     public boolean downLeft(int loc){
         for (int i = loc; i < 64; i += 7) {
-            if (i == loc) continue;
+            if (i == loc && i % 8 != 7) continue;
             if (i % 8 == 7) break;
             if (pieceHeld.equals("wKing") && pieceLoc.containsKey(i)) {
                 if (pieceLoc.get(i).equals("bQueen") || pieceLoc.get(i).equals("bBishop")) {
