@@ -4,6 +4,8 @@ import java.awt.event.ActionListener;
 public class BuildChess extends HelperFunctions implements ActionListener, SetupVars, Images {
     public static int[][] whitePawnMove = new int[2][8];
     public static int[][] blackPawnMove = new int[2][8];
+    int firstWhitePawn = 48;
+    int firstBlackPawn = 8;
     public static boolean gameOver = false;
 
     public void place() {
@@ -27,12 +29,8 @@ public class BuildChess extends HelperFunctions implements ActionListener, Setup
             }
         }
         for (int i = 0; i < 8; i++) {
-            int firstWhitePawn = 48;
-            int firstBlackPawn = 8;
             whitePawnMove[0][i] = firstWhitePawn + i;
-            whitePawnMove[1][i] = 0;
             blackPawnMove[0][i] = firstBlackPawn + i;
-            blackPawnMove[1][i] = 0;
         }
     }
     @Override
