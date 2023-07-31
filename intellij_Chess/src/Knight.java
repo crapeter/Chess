@@ -11,8 +11,8 @@ public class Knight extends HelperFunctions {
     }
     public static void canPlace(int loc, int location, int spaceBetween, JButton[] buttons, HashMap<Integer, String> pieceLoc) {
         if (0 <= loc && loc < 64 && Math.abs((location / 8) - (loc / 8)) == spaceBetween) {
-            boolean empty = pieceLoc.containsKey(loc);
-            displayMoves(loc, buttons, empty ? Color.red : Color.yellow);
+            boolean notEmpty = pieceLoc.containsKey(loc);
+            displayMoves(loc, buttons, notEmpty ? Color.red : Color.yellow);
         }
     }
 }
