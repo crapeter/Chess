@@ -28,22 +28,18 @@ public class Bpawn extends BuildChess implements Images {
     }
     public static void diagDisplay(int loc, JButton[] buttons, HashMap<Integer, String> pieceLoc) {
         for (String piece: whitePieces) {
-            if (pieceLoc.containsKey(loc + 7) && pieceLoc.get(loc + 7).equals(piece) && loc % 8 != 0) {
+            if (pieceLoc.containsKey(loc + 7) && pieceLoc.get(loc + 7).equals(piece) && loc % 8 != 0)
                 displayMoves(loc + 7, buttons, Color.red);
-            }
-            if (pieceLoc.containsKey(loc + 9) && pieceLoc.get(loc + 9).equals(piece) && loc % 8 != 7) {
+            if (pieceLoc.containsKey(loc + 9) && pieceLoc.get(loc + 9).equals(piece) && loc % 8 != 7)
                 displayMoves(loc + 9, buttons, Color.red);
-            }
             //checking for en passant
             if (pieceLoc.containsKey(loc - 1) && pieceLoc.get(loc - 1).equals(piece) && loc % 8 != 0 && loc / 8 == 4) {
-                if (Math.abs(whitePawnMove[0][(location - 1) % 8] - whitePawnMove[1][(location - 1) % 8]) == 16) {
+                if (Math.abs(whitePawnMove[0][(location - 1) % 8] - whitePawnMove[1][(location - 1) % 8]) == 16)
                     displayMoves(loc + 7, buttons, Color.red);
-                }
             }
             if (pieceLoc.containsKey(loc + 1) && pieceLoc.get(loc + 1).equals(piece) && loc % 8 != 7 && loc / 8 == 4) {
-                if (Math.abs(whitePawnMove[0][(location + 1) % 8] - whitePawnMove[1][(location + 1) % 8]) == 16) {
+                if (Math.abs(whitePawnMove[0][(location + 1) % 8] - whitePawnMove[1][(location + 1) % 8]) == 16)
                     displayMoves(loc + 9, buttons, Color.red);
-                }
             }
         }
     }
