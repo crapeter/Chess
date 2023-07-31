@@ -156,7 +156,7 @@ public class Move extends BuildChess{
         switch (pieceHeld) {
             case "wRook" -> {
                 if (location == 56) canWhiteCastle1 = false;
-                if (location == 62) canWhiteCastle2 = false;
+                if (location == 63) canWhiteCastle2 = false;
             }
             case "wKing" -> {
                 if (location == 60) {
