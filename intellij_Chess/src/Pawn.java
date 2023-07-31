@@ -9,6 +9,7 @@ public class Pawn extends BuildChess implements Images, ActionListener {
     public JPanel titlePanel = new JPanel();
     public JButton[] buttons = new JButton[4];
     public JPanel panel = new JPanel();
+    
     public void change(String color) {
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setSize(400, 400);
