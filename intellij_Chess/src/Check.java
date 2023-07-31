@@ -10,7 +10,7 @@ class Check extends HelperFunctions implements SetupVars{
         if (up(kingLoc) && down(kingLoc) && left(kingLoc) && right(kingLoc)
                 && upRight(kingLoc) && upLeft(kingLoc) && downRight(kingLoc) && downLeft(kingLoc)
                 && checkKnight(kingLoc) && checkPawn(kingLoc)) {
-            displayMoves(kingLoc, buttons, Color.yellow);
+            displayMoves(kingLoc, buttons, pieceLoc.containsKey(kingLoc) ? Color.red : Color.yellow);
         }
     }
     public boolean up(int loc){
