@@ -15,21 +15,15 @@ public class Bpawn extends BuildChess implements Images {
     }
     public static void display(int loc, JButton[] buttons, HashMap<Integer, String> pieceLoc, boolean firstMove) {
         if (firstMove) {
-            if (pieceLoc.containsKey(loc + 8)) {
-                blockPawn(loc + 8, buttons, Color.red);
-            }  else if (pieceLoc.containsKey(loc + 16)) {
+            boolean singleMove = pieceLoc.containsKey(loc + 8);
+            boolean doubleMove = pieceLoc.containsKey(loc + 16);
+            if (!singleMove)
                 displayMoves(loc + 8, buttons, Color.yellow);
-                blockPawn(loc + 16, buttons, Color.red);
-            } else {
-                displayMoves(loc + 8, buttons, Color.yellow);
+            if (!doubleMove && !singleMove)
                 displayMoves(loc + 16, buttons, Color.yellow);
-            }
-        }else {
-            if (pieceLoc.containsKey(loc + 8)) {
-                blockPawn(loc + 8, buttons, Color.red);
-            } else {
+        } else {
+            if (!pieceLoc.containsKey(loc + 8))
                 displayMoves(loc + 8, buttons, Color.yellow);
-            }
         }
     }
     public static void diagDisplay(int loc, JButton[] buttons, HashMap<Integer, String> pieceLoc) {
