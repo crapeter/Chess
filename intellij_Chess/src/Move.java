@@ -1,4 +1,7 @@
 public class Move extends PieceFunctionality {
+    private static boolean whiteKingMoved = false;
+    private static boolean blackKingMoved = false;
+    
     public static void grab(int loc) {
         switch (pieceLoc.get(loc)) {
             case "wPawn" -> {
@@ -69,7 +72,7 @@ public class Move extends PieceFunctionality {
         Pawn pawn = new Pawn();
         if (!buttons[loc].getText().equals("a")) {
             swapPiece(location, location, icon, pieceHeld);
-            System.out.println("Choose a valid spot bozo");
+            System.out.println("Choose a legal move bozo");
         } else { //move is available
             checkCastle(); //updates the castle booleans
             switch (pieceHeld) {
@@ -79,7 +82,7 @@ public class Move extends PieceFunctionality {
                         location = loc;
                         pawn.change("White");
                     } else if (loc == location - 7 || loc == location - 9) {
-                        boolean upLeft = loc == location - 9; //location of opposing pawn
+                        boolean upLeft = (loc == location - 9); //location of opposing pawn
                         removePiece(upLeft ? location - 1 : location + 1, "bPawn");
                     }
                     if (whitePawnMove[1][location % 8] == 0)
@@ -91,7 +94,7 @@ public class Move extends PieceFunctionality {
                         location = loc;
                         pawn.change("Black");
                     } else if (loc == location + 7 || loc == location + 9) {
-                        boolean downLeft = loc == location + 7; //location of opposing pawn
+                        boolean downLeft = (loc == location + 7); //location of opposing pawn
                         removePiece(downLeft ? location - 1 : location + 1, "wPawn");
                     }
                     if (blackPawnMove[1][location % 8] == 0)
@@ -130,7 +133,7 @@ public class Move extends PieceFunctionality {
             swapPiece(location, loc, icon, pieceHeld);
         } else {
             swapPiece(location, location, icon, pieceHeld);
-            System.out.println("Choose a valid spot bozo");
+            System.out.println("Choose a legal move bozo");
         }
     }
     private static void pawnCheck(int loc, int row, String pieceName, String takeName, String color) {
@@ -143,27 +146,25 @@ public class Move extends PieceFunctionality {
         }
     }
     private static void checkCastle() {
-        switch (pieceHeld) {
-            case "wRook" -> {
-                if (location == 56) canWhiteCastle1 = false;
-                if (location == 63) canWhiteCastle2 = false;
-            }
-            case "wKing" -> {
-                if (location == 60) {
-                    canWhiteCastle1 = false;
-                    canWhiteCastle2 = false;
-                }
-            }
-            case "bRook" -> {
-                if (location == 0) canBlackCastle1 = false;
-                if (location == 7) canBlackCastle2 = false;
-            }
-            case "bKing" -> {
-                if (location == 4) {
-                    canBlackCastle1 = false;
-                    canBlackCastle2 = false;
-                }
-            }
+        // checking white castling
+        if ( (!pieceLoc.containsKey(56) || pieceLoc.containsKey(56) && !pieceLoc.get(56).equals("wRook")) && canWhiteCastle1)
+            canWhiteCastle1 = false;
+        if ( (!pieceLoc.containsKey(63) || pieceLoc.containsKey(63) && !pieceLoc.get(63).equals("wRook")) && canWhiteCastle2)
+            canWhiteCastle2 = false;
+        if ( (!pieceLoc.containsKey(60) || pieceLoc.containsKey(60) && !pieceLoc.get(60).equals("wKing")) && !whiteKingMoved) {
+            canWhiteCastle1 = false;
+            canWhiteCastle2 = false;
+            whiteKingMoved = true;
+        }
+        // checking black castling
+        if ( (!pieceLoc.containsKey(0) || pieceLoc.containsKey(0) && !pieceLoc.get(0).equals("bRook")) && canBlackCastle1)
+            canBlackCastle1 = false;
+        if ( (!pieceLoc.containsKey(7) || pieceLoc.containsKey(7) && !pieceLoc.get(7).equals("bRook")) && canBlackCastle2)
+            canBlackCastle2 = false;
+        if ( (!pieceLoc.containsKey(4) || pieceLoc.containsKey(4) && !pieceLoc.get(4).equals("bKing")) && !blackKingMoved) {
+            canBlackCastle1 = false;
+            canBlackCastle2 = false;
+            blackKingMoved = true;
         }
     }
 }
