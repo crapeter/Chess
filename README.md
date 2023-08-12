@@ -1,5 +1,4 @@
-# Scuffed_Chess
-Chess built in Java using the jSwing GUI framework.
+# jSwing_Chess
 
 This was my first 'large' project in java with only one real coding class under my belt.
 
