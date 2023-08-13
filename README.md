@@ -1,4 +1,4 @@
-# jSwing_Chess
+# Chess
 
 This was my first 'large' project in java with only one real coding class under my belt.
 
