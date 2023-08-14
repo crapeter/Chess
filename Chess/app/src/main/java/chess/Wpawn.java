@@ -24,7 +24,7 @@ public class Wpawn extends PieceFunctionality {
             if (!doubleMove && !singleMove)
                 displayMoves(loc - 16, buttons, Color.yellow);
         } else {
-            if (!pieceLoc.containsKey(loc + 8))
+            if (!pieceLoc.containsKey(loc - 8))
                 displayMoves(loc - 8, buttons, Color.yellow);
         }
     }
