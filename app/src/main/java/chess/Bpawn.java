@@ -35,11 +35,11 @@ public class Bpawn extends PieceFunctionality {
             if (pieceLoc.containsKey(loc + 9) && pieceLoc.get(loc + 9).equals(piece) && loc % 8 != 7)
                 displayMoves(loc + 9, buttons, Color.red);
             //checking for en passant
-            if (pieceLoc.containsKey(loc - 1) && pieceLoc.get(loc - 1).equals(piece) && loc % 8 != 0 && loc / 8 == 4) {
+            if (pieceLoc.containsKey(loc - 1) && pieceLoc.get(loc - 1).equals("wPawn") && loc % 8 != 0 && loc / 8 == 4) {
                 if (Math.abs(whitePawnMove[0][(location - 1) % 8] - whitePawnMove[1][(location - 1) % 8]) == 16)
                     displayMoves(loc + 7, buttons, Color.red);
             }
-            if (pieceLoc.containsKey(loc + 1) && pieceLoc.get(loc + 1).equals(piece) && loc % 8 != 7 && loc / 8 == 4) {
+            if (pieceLoc.containsKey(loc + 1) && pieceLoc.get(loc + 1).equals("wPawn") && loc % 8 != 7 && loc / 8 == 4) {
                 if (Math.abs(whitePawnMove[0][(location + 1) % 8] - whitePawnMove[1][(location + 1) % 8]) == 16)
                     displayMoves(loc + 9, buttons, Color.red);
             }
