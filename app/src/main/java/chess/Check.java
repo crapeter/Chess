@@ -1,6 +1,8 @@
 package chess;
 
-class Check extends PieceUtils implements SetupVars{
+import java.awt.*;
+
+class Check extends PieceUtils implements SetupVars {
     int kingLoc;
 
     public Check(int loc) {
