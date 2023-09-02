@@ -21,7 +21,7 @@ public class Draw implements Images, SetupVars{
         frame.setResizable(false);
 
         textField.setBackground(Color.black);
-        textField.setForeground(Color.white);
+        textField.setForeground(new Color(0, 66, 0));
         textField.setFont(new Font("Verdana", Font.PLAIN, 75));
         textField.setHorizontalAlignment(JLabel.CENTER);
         textField.setText("Chess");
