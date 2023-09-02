@@ -11,6 +11,8 @@ class Check extends PieceUtils implements SetupVars{
                 && upRight(kingLoc) && upLeft(kingLoc) && downRight(kingLoc) && downLeft(kingLoc)
                 && checkKnight(kingLoc) && checkPawn(kingLoc)) {
             displayMoves(kingLoc, buttons);
+        } else if (!pieceLoc.containsKey(kingLoc)) {
+            buttons[kingLoc].setBackground(Color.red.darker());
         }
     }
     public boolean up(int loc){
@@ -149,7 +151,7 @@ class Check extends PieceUtils implements SetupVars{
         if (pieceHeld.equals("wKing") && pieceLoc.containsKey(loc)) {
             return !pieceLoc.get(loc).equals("bQueen") && !pieceLoc.get(loc).equals(piece1);
         } else if (pieceHeld.equals("bKing") && pieceLoc.containsKey(loc)) {
-            return !pieceLoc.get(loc).equals("bQueen") && !pieceLoc.get(loc).equals(piece2);
+            return !pieceLoc.get(loc).equals("wQueen") && !pieceLoc.get(loc).equals(piece2);
         }
         return true;
     }
