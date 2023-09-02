@@ -67,6 +67,11 @@ public abstract class PieceUtils implements SetupVars {
 
     public static void resetBoardColor() {
         boolean white = true;
+        if (currentlyWhite) {
+            textField.setText("White's turn");
+        } else {
+            textField.setText("Black's turn");
+        }
         for (int i = 0; i < 64; i++) {
             if (white)
                 buttons[i].setBackground(new Color(238, 238, 210));
