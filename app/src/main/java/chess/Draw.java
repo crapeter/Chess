@@ -2,9 +2,18 @@ package chess;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Draw implements Images, SetupVars{
     public boolean white = true;
+    Timer timer = new Timer();
+    TimerTask task = new TimerTask() {
+        @Override
+        public void run() {
+            textField.setText("White's turn");
+        }
+    };
     public void draw() {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 900);
@@ -40,5 +49,6 @@ public class Draw implements Images, SetupVars{
         frame.add(titlePanel, BorderLayout.NORTH);
         frame.add(panel);
         frame.setVisible(true);
+        timer.schedule(task, 1500);
     }
 }
