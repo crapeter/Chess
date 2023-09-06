@@ -87,8 +87,7 @@ public class Move extends PieceFunctionality {
             switch (pieceHeld) {
                 case "wPawn" -> {
                     if (location / 8 == 0) {
-                        removePiece(location, "wPawn");
-                        location = loc;
+                        promotePawn(loc, "White");
                     } else if (loc == location - 7 || loc == location - 9) {
                         boolean upLeft = (loc == location - 9); //location of opposing pawn
                         removePiece(upLeft ? location - 1 : location + 1, "bPawn");
@@ -98,8 +97,7 @@ public class Move extends PieceFunctionality {
                 }
                 case "bPawn" -> {
                     if (loc / 8 == 7) {
-                        removePiece(location, "bPawn");
-                        location = loc;
+                        promotePawn(loc, "Black");
                     } else if (loc == location + 7 || loc == location + 9) {
                         boolean downLeft = (loc == location + 7); //location of opposing pawn
                         removePiece(downLeft ? location - 1 : location + 1, "wPawn");
@@ -110,14 +108,10 @@ public class Move extends PieceFunctionality {
                 case "wKing" -> {
                     if (loc == 57 || loc == 62)
                         swapPiece(loc == 57 ? 56 : 63, loc == 57 ? 58 : 61, wRook, "wRook");
-                    canWhiteCastle1 = false;
-                    canWhiteCastle2 = false;
                 }
                 case "bKing" -> {
                     if (loc == 1 || loc == 6)
                         swapPiece(loc == 1 ? 0 : 7, loc == 1 ? 2 : 5, bRook, "bRook");
-                    canBlackCastle1 = false;
-                    canBlackCastle2 = false;
                 }
             }
             swapPiece(location, loc, icon, pieceHeld);
