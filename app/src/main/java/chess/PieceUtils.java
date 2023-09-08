@@ -65,20 +65,25 @@ public abstract class PieceUtils implements SetupVars {
         }
     }
 
-    public static void resetBoardColor() {
-        boolean white = true;
-        if (currentlyWhite) {
-            textField.setText("White's turn");
-        } else {
-            textField.setText("Black's turn");
-        }
-        for (int i = 0; i < 64; i++) {
-            if (white)
-                buttons[i].setBackground(new Color(238, 238, 210));
-            else
-                buttons[i].setBackground(new Color(118, 150, 86));
-            if (i % 8 != 7)
-                white = !white;
-        }
+  public static void resetBoardColor() {
+    boolean white = true;
+    if (currentlyWhite) {
+      textField.setText("White's turn");
+    } else {
+      textField.setText("Black's turn");
     }
+    for (int i = 0; i < 64; i++) {
+      if (white) {
+        buttons[i].setBackground(new Color(238, 238, 210));
+      }
+      else {
+        buttons[i].setBackground(new Color(118, 150, 86));
+      }
+      if (buttons[i].getText().equals("a")) {
+        buttons[i].setText("");
+      }
+      if (i % 8 != 7)
+        white = !white;
+    }
+  }
 }
