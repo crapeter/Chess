@@ -30,9 +30,7 @@ public class PieceFunctionality extends PieceUtils implements ActionListener, Se
         for (int i = 0; i < 64; i++) {
             if (e.getSource() == buttons[i]) {
                 if (pieceLoc.containsKey(i) && !holdingPiece && !promoting) {
-                    if (currentlyWhite && whitePiece.contains(pieceLoc.get(i))) {
-                        Move.grab(i);
-                    } else if (!currentlyWhite && !whitePiece.contains(pieceLoc.get(i))) {
+                    if ( (currentlyWhite && whitePiece.contains(pieceLoc.get(i))) || (!currentlyWhite && !whitePiece.contains(pieceLoc.get(i))) ) {
                         Move.grab(i);
                     } else {
                         String color = currentlyWhite ? "white" : "black";
@@ -40,8 +38,14 @@ public class PieceFunctionality extends PieceUtils implements ActionListener, Se
                     }
                     break;
                 } else if (pieceLoc.containsKey(i) && holdingPiece && !promoting) {
-                    Move.take(i);
-                    resetBoardColor();
+                    if ( (currentlyWhite && whitePiece.contains(pieceLoc.get(i))) || (!currentlyWhite && !whitePiece.contains(pieceLoc.get(i))) ) {
+                        placePiece(location, icon, pieceHeld);
+                        resetBoardColor();
+                        Move.grab(i);
+                    } else {
+                        Move.take(i);
+                        resetBoardColor();
+                    }
                 } else if (!pieceLoc.containsKey(i) && !holdingPiece && !promoting) {
                     System.out.println("Pick up a piece bozo");
                 } else if (!pieceLoc.containsKey(i) && holdingPiece && !promoting) {
