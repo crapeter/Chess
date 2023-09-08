@@ -42,6 +42,7 @@ public class PieceFunctionality extends PieceUtils implements ActionListener, Se
                         placePiece(location, icon, pieceHeld);
                         resetBoardColor();
                         Move.grab(i);
+                        break;
                     } else {
                         Move.take(i);
                         resetBoardColor();
