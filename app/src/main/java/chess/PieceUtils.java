@@ -29,14 +29,18 @@ public abstract class PieceUtils implements SetupVars, Images {
 
   public static void removePiece(int loc, String pieceName, boolean enPas) {
     boolean isWhitePiece = whitePiece.contains(pieceHeld);
+    boolean isPawn = false;
     if (enPas) {
       takingIcon = pieceName.equals("wPawn") ? wPawn : bPawn;
     } else {
       takingIcon = getIcon(loc);
     }
+    if (pieceLoc.get(loc).equals("wPawn") || pieceLoc.get(loc).equals("bPawn")) {
+      isPawn = true;
+    }
     pieceLoc.remove(loc, pieceName);
     buttons[loc].setIcon(null);
-    Draw.addCapturedPiece(takingIcon, isWhitePiece);
+    Draw.addCapturedPiece(takingIcon, isWhitePiece, isPawn);
   }
 
   public static void pickUpPiece(int loc, String pieceName) {
