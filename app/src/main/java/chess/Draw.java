@@ -10,8 +10,6 @@ public class Draw implements Images, SetupVars {
   static JPanel capturedBlackPanel1 = new JPanel();
   static JPanel capturedWhitePanel2 = new JPanel();
   static JPanel capturedBlackPanel2 = new JPanel();
-  static int whiteCount = 0;
-  static int blackCount = 0;
   public boolean white = true;
   Timer timer = new Timer();
   TimerTask task = new TimerTask() {
@@ -78,11 +76,11 @@ public class Draw implements Images, SetupVars {
     timer.schedule(task, 1500);
   }
 
-  public static void addCapturedPiece(ImageIcon icon, boolean isWhitePiece) {
+  public static void addCapturedPiece(ImageIcon icon, boolean isWhitePiece, boolean isPawn) {
     JLabel label = new JLabel(icon);
     label.setPreferredSize(new Dimension(45, 45));
     if (isWhitePiece) {
-      if (blackCount < 8) {
+      if (isPawn) {
         capturedBlackPanel1.add(label);
         capturedBlackPanel1.revalidate();
         capturedBlackPanel1.repaint();
@@ -91,9 +89,8 @@ public class Draw implements Images, SetupVars {
         capturedBlackPanel2.revalidate();
         capturedBlackPanel2.repaint();
       }
-      blackCount++;
     } else {
-      if (whiteCount < 8) {
+      if (isPawn) {
         capturedWhitePanel1.add(label);
         capturedWhitePanel1.revalidate();
         capturedWhitePanel1.repaint();
@@ -102,7 +99,6 @@ public class Draw implements Images, SetupVars {
         capturedWhitePanel2.revalidate();
         capturedWhitePanel2.repaint();
       }
-      whiteCount++;
     }
     capturedPanel.revalidate();
     capturedPanel.repaint();
