@@ -1,6 +1,7 @@
 package chess;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -38,6 +39,7 @@ public class Draw implements Images, SetupVars {
     panel.setLayout(new GridLayout(8, 8));
     panel.setEnabled(false);
     panel.setBackground(Color.black);
+    panel.setBorder(new LineBorder(new Color(118, 150, 86).darker(), 3));
 
     for (int i = 0; i < 64; i++) {
       buttons[i] = new JButton();
@@ -54,12 +56,16 @@ public class Draw implements Images, SetupVars {
     capturedPanel.setPreferredSize(new Dimension(200, 800));
     capturedPanel.setBackground(Color.gray);
     capturedPanel.setLayout(new GridLayout(2, 2));
+    
     capturedWhitePanel1.setLayout(new BoxLayout(capturedWhitePanel1, BoxLayout.Y_AXIS));
     capturedWhitePanel1.setBackground(new Color(28, 28, 28));
+    
     capturedBlackPanel1.setLayout(new BoxLayout(capturedBlackPanel1, BoxLayout.Y_AXIS));
     capturedBlackPanel1.setBackground(Color.white.darker());
+    
     capturedWhitePanel2.setLayout(new BoxLayout(capturedWhitePanel2, BoxLayout.Y_AXIS));
     capturedWhitePanel2.setBackground(new Color(28, 28, 28));
+    
     capturedBlackPanel2.setLayout(new BoxLayout(capturedBlackPanel2, BoxLayout.Y_AXIS));
     capturedBlackPanel2.setBackground(Color.white.darker());
 
