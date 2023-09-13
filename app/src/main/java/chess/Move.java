@@ -107,12 +107,16 @@ public class Move extends PieceFunctionality {
             blackPawnMove[1][location % 8] = loc;
         }
         case "wKing" -> {
-          if (loc == 57 || loc == 62)
-            swapPiece(loc == 57 ? 56 : 63, loc == 57 ? 58 : 61, wRook, "wRook");
+          if (loc == 57 && canWhiteCastle1 && !whiteKingMoved)
+            swapPiece( 56, 58, wRook, "wRook");
+          else if (loc == 62 && canWhiteCastle2 && !whiteKingMoved)
+            swapPiece(63, 61, wRook, "wRook");
         }
         case "bKing" -> {
-          if (loc == 1 || loc == 6)
-            swapPiece(loc == 1 ? 0 : 7, loc == 1 ? 2 : 5, bRook, "bRook");
+          if (loc == 1)
+            swapPiece(0, 2, bRook, "bRook");
+          if (loc == 6)
+            swapPiece(7, 5, bRook, "bRook");
         }
       }
       swapPiece(location, loc, icon, pieceHeld);
