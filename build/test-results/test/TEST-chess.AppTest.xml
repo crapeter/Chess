@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="chess.AppTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-09-11T23:53:48" hostname="FJCL1J3" time="0.003">
+  <properties/>
+  <testcase name="appHasAGreeting" classname="chess.AppTest" time="0.003"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
