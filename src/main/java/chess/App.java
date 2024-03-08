@@ -1,7 +1,6 @@
 package chess;
 
 public class App {
-
   public static void main(String[] args) {
     PieceFunctionality piece = new PieceFunctionality();
     PieceSetup pieces = new PieceSetup();
