@@ -1,6 +1,5 @@
 package chess;
 
-//testing for github pushing
 public class App {
   public static void main(String[] args) {
     PieceFunctionality piece = new PieceFunctionality();
