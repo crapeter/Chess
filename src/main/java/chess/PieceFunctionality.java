@@ -6,13 +6,11 @@ import java.awt.event.ActionListener;
 import java.util.Arrays;
 import java.util.List;
 
-public class PieceFunctionality extends PieceUtils implements ActionListener, SetupVars, Images {
+public class PieceFunctionality extends PieceUtils implements ActionListener {
   public static boolean[] whiteEnPassant = new boolean[8];
   public static boolean[] blackEnPassant = new boolean[8];
 
   public void addFunctionality() {
-    int firstWhitePawn = 48;
-    int firstBlackPawn = 8;
     currentlyWhite = true;
     for (int i = 0; i < 64; i++) {
       buttons[i].addActionListener(this);
@@ -27,7 +25,7 @@ public class PieceFunctionality extends PieceUtils implements ActionListener, Se
   public void actionPerformed(ActionEvent e) {
     boolean whiteKing = false;
     boolean blackKing = false;
-    String[] whitePieces = {"wPawn", "wRook", "wKnight", "wBishop", "wQueen", "wKing"};
+    String[] whitePieces = { "wPawn", "wRook", "wKnight", "wBishop", "wQueen", "wKing" };
     List<String> whitePiece = Arrays.asList(whitePieces);
     for (int i = 0; i < 64; i++) {
       if (e.getSource() == buttons[i]) {
@@ -41,9 +39,9 @@ public class PieceFunctionality extends PieceUtils implements ActionListener, Se
           }
           textField.setText("Stalemate");
           break;
-        }
-        else if (pieceLoc.containsKey(i) && !holdingPiece && !promoting) {
-          if ( (currentlyWhite && whitePiece.contains(pieceLoc.get(i))) || (!currentlyWhite && !whitePiece.contains(pieceLoc.get(i))) ) {
+        } else if (pieceLoc.containsKey(i) && !holdingPiece && !promoting) {
+          if ((currentlyWhite && whitePiece.contains(pieceLoc.get(i)))
+              || (!currentlyWhite && !whitePiece.contains(pieceLoc.get(i)))) {
             Move.grab(i);
           } else {
             String color = currentlyWhite ? "white" : "black";
@@ -51,7 +49,8 @@ public class PieceFunctionality extends PieceUtils implements ActionListener, Se
           }
           break;
         } else if (pieceLoc.containsKey(i) && holdingPiece && !promoting) {
-          if ( (currentlyWhite && whitePiece.contains(pieceLoc.get(i))) || (!currentlyWhite && !whitePiece.contains(pieceLoc.get(i))) ) {
+          if ((currentlyWhite && whitePiece.contains(pieceLoc.get(i)))
+              || (!currentlyWhite && !whitePiece.contains(pieceLoc.get(i)))) {
             placePiece(location, icon, pieceHeld);
             resetBoardColor();
             Move.grab(i);
@@ -99,6 +98,7 @@ public class PieceFunctionality extends PieceUtils implements ActionListener, Se
       }
     }
   }
+
   private static String pieceName() {
     String temp = "";
     switch (pieceHeld) {

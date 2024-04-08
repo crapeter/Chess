@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Draw extends PieceUtils implements Images, SetupVars, ActionListener {
+public class Draw extends PieceUtils implements ActionListener {
   Font font;
   Font newFont;
   boolean white = true;
@@ -104,15 +104,17 @@ public class Draw extends PieceUtils implements Images, SetupVars, ActionListene
     capturedPanel.revalidate();
     capturedPanel.repaint();
   }
+
   public static void panelDisplay(JPanel panel, JLabel label, boolean adding) {
-   if (adding) {
-     panel.add(label);
-   } else {
-     panel.removeAll();
-   }
+    if (adding) {
+      panel.add(label);
+    } else {
+      panel.removeAll();
+    }
     panel.revalidate();
     panel.repaint();
   }
+
   @Override
   public void actionPerformed(ActionEvent e) {
     if (e.getSource() == forfeit) {
@@ -125,7 +127,7 @@ public class Draw extends PieceUtils implements Images, SetupVars, ActionListene
         gameOver = true;
         for (int i = 0; i < 64; i++) {
           if (currentlyWhite && pieceLoc.containsKey(i) && pieceLoc.get(i).equals("wKing")) {
-           buttons[i].setIcon(wForfeit);
+            buttons[i].setIcon(wForfeit);
           } else if (!currentlyWhite && pieceLoc.containsKey(i) && pieceLoc.get(i).equals("bKing")) {
             buttons[i].setIcon(bForfeit);
           }

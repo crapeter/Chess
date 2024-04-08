@@ -2,10 +2,11 @@ package chess;
 
 import java.awt.*;
 
-class Check extends PieceUtils implements SetupVars {
+class Check extends PieceUtils {
   private static final int BOARD_SIZE = 64;
   private static final int ROW_LENGTH = 8;
   private final int kingLoc;
+
   public Check(int loc) {
     this.kingLoc = loc;
 
@@ -18,27 +19,32 @@ class Check extends PieceUtils implements SetupVars {
       buttons[kingLoc].setBackground(Color.red.darker());
     }
   }
+
   private boolean isKingSafe() {
     return vertical() && horizontal()
-            && rightDiagonal() && leftDiagonal()
-            && checkKnight(kingLoc) && checkPawn(kingLoc);
+        && rightDiagonal() && leftDiagonal()
+        && checkKnight(kingLoc) && checkPawn(kingLoc);
   }
 
   private boolean vertical() {
     return moveDirectionally(-ROW_LENGTH) && moveDirectionally(ROW_LENGTH);
   }
+
   private boolean horizontal() {
     return moveHorizontally(-1) && moveHorizontally(1);
   }
+
   private boolean rightDiagonal() {
     return moveDiagonally(-ROW_LENGTH + 1) && moveDiagonally(ROW_LENGTH + 1);
   }
+
   private boolean leftDiagonal() {
     return moveDiagonally(-ROW_LENGTH - 1) && moveDiagonally(ROW_LENGTH - 1);
   }
+
   private boolean checkKnight(int loc) {
-    int[] knightLoc1 = {loc - 10, loc - 6, loc + 6, loc + 10};
-    int[] knightLoc2 = {loc - 17, loc - 15, loc + 15, loc + 17};
+    int[] knightLoc1 = { loc - 10, loc - 6, loc + 6, loc + 10 };
+    int[] knightLoc2 = { loc - 17, loc - 15, loc + 15, loc + 17 };
     for (int i : knightLoc1) {
       boolean inLine = Math.abs((loc / 8) - (i / 8)) == 1;
       boolean inBoundaries = 0 <= i && i < 64;
@@ -67,20 +73,21 @@ class Check extends PieceUtils implements SetupVars {
     }
     return true;
   }
+
   private boolean checkPawn(int loc) {
-    int[] blackPawnLoc = {loc - 9, loc - 7};
-    int[] whitePawnLoc = {loc + 9, loc + 7};
+    int[] blackPawnLoc = { loc - 9, loc - 7 };
+    int[] whitePawnLoc = { loc + 9, loc + 7 };
     if (pieceHeld.equals("wKing")) {
       for (int i : blackPawnLoc) {
         if (0 <= i && pieceLoc.containsKey(i) && pieceLoc.get(i).equals("bPawn")
-                && Math.abs((loc / 8) - (i / 8)) == 1) {
+            && Math.abs((loc / 8) - (i / 8)) == 1) {
           return false;
         }
       }
     } else if (pieceHeld.equals("bKing")) {
       for (int i : whitePawnLoc) {
         if (i < 64 && pieceLoc.containsKey(i) && pieceLoc.get(i).equals("wPawn")
-                && Math.abs((loc / 8) - (i / 8)) == 1) {
+            && Math.abs((loc / 8) - (i / 8)) == 1) {
           return false;
         }
       }
@@ -100,7 +107,8 @@ class Check extends PieceUtils implements SetupVars {
   }
 
   private boolean moveHorizontally(int increment) {
-    for (int i = kingLoc + increment; i >= 0 && i < BOARD_SIZE && i / ROW_LENGTH == kingLoc / ROW_LENGTH; i += increment) {
+    for (int i = kingLoc + increment; i >= 0 && i < BOARD_SIZE
+        && i / ROW_LENGTH == kingLoc / ROW_LENGTH; i += increment) {
       if (checking(i, "Rook")) {
         return false;
       } else if (pieceLoc.containsKey(i) && !pieceLoc.get(i).equals("wKing") && !pieceLoc.get(i).equals("bKing")) {
@@ -112,9 +120,9 @@ class Check extends PieceUtils implements SetupVars {
 
   private boolean moveDiagonally(int increment) {
     for (int i = kingLoc + increment; i >= 0 && i < BOARD_SIZE; i += increment) {
-      if ( (increment == 9 || increment == -7) && i % ROW_LENGTH == 0) {
+      if ((increment == 9 || increment == -7) && i % ROW_LENGTH == 0) {
         break;
-      } else if ( (increment == -9 || increment == 7) && i % ROW_LENGTH == 7) {
+      } else if ((increment == -9 || increment == 7) && i % ROW_LENGTH == 7) {
         break;
       }
       if (checking(i, "Bishop")) {

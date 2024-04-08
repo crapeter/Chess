@@ -1,7 +1,7 @@
 package chess;
 
 public class Bpawn extends PieceFunctionality {
-  public static String[] whitePieces = {"wBishop", "wKing", "wKnight", "wPawn", "wQueen", "wRook"};
+  public static String[] whitePieces = { "wBishop", "wKing", "wKnight", "wPawn", "wQueen", "wRook" };
 
   public static void display() {
     if (location / 8 == 1) {

@@ -1,6 +1,6 @@
 package chess;
 
-public class PieceSetup extends PieceUtils implements SetupVars, Images {
+public class PieceSetup extends PieceUtils {
   public void place() {
     for (int i = 0; i < 64; i++) {
       buttons[i].setIcon(null);

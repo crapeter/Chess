@@ -79,8 +79,8 @@ public class Move extends PieceFunctionality {
       swapPiece(location, location, icon, pieceHeld);
       if (loc != location)
         System.out.println("Choose a legal move bozo");
-    } else { //move is available
-      String[] blackPieces = {"bRook", "bKnight", "bBishop", "bQueen", "bKing", "bPawn"};
+    } else { // move is available
+      String[] blackPieces = { "bRook", "bKnight", "bBishop", "bQueen", "bKing", "bPawn" };
       if (Arrays.asList(blackPieces).contains(pieceHeld))
         checkBlackCastle();
       else
@@ -90,16 +90,17 @@ public class Move extends PieceFunctionality {
           if (loc / 8 == 0) {
             promotePawn(loc, "White");
           } else if (loc == location - 7 || loc == location - 9) {
-            boolean upLeft = (loc == location - 9); //location of opposing pawn
+            boolean upLeft = (loc == location - 9); // location of opposing pawn
             removePiece(upLeft ? location - 1 : location + 1, "bPawn", true);
           }
-          //setting en passant if applicable
+          // setting en passant if applicable
           if (Math.abs(loc - location) == 16)
             whiteEnPassant[location % 8] = true;
 
-          //ensuring that only one pawn is en passant able at a time
+          // ensuring that only one pawn is en passant able at a time
           for (int i = 0; i < 8; i++) {
-            if (i == location % 8) continue;
+            if (i == location % 8)
+              continue;
             whiteEnPassant[i] = false;
           }
         }
@@ -107,22 +108,23 @@ public class Move extends PieceFunctionality {
           if (loc / 8 == 7) {
             promotePawn(loc, "Black");
           } else if (loc == location + 7 || loc == location + 9) {
-            boolean downLeft = (loc == location + 7); //location of opposing pawn
+            boolean downLeft = (loc == location + 7); // location of opposing pawn
             removePiece(downLeft ? location - 1 : location + 1, "wPawn", true);
           }
-          //setting en passant if applicable
+          // setting en passant if applicable
           if (Math.abs(loc - location) == 16)
             blackEnPassant[location % 8] = true;
 
-          //ensuring that only one pawn is en passant able at a time
+          // ensuring that only one pawn is en passant able at a time
           for (int i = 0; i < 8; i++) {
-            if (i == location % 8) continue;
+            if (i == location % 8)
+              continue;
             blackEnPassant[i] = false;
           }
         }
         case "wKing" -> {
           if (loc == 57 && canWhiteCastle1 && !whiteKingMoved)
-            swapPiece( 56, 58, wRook, "wRook");
+            swapPiece(56, 58, wRook, "wRook");
           else if (loc == 62 && canWhiteCastle2 && !whiteKingMoved)
             swapPiece(63, 61, wRook, "wRook");
         }
@@ -140,7 +142,7 @@ public class Move extends PieceFunctionality {
   }
 
   public static void take(int loc) {
-    String[] blackPieces = {"bBishop", "bKing", "bKnight", "bPawn", "bQueen", "bRook"};
+    String[] blackPieces = { "bBishop", "bKing", "bKnight", "bPawn", "bQueen", "bRook" };
     String currentPieceColor = "white";
     String takingPieceColor = "white";
 
@@ -152,8 +154,10 @@ public class Move extends PieceFunctionality {
     }
 
     if (!currentPieceColor.equals(takingPieceColor) && buttons[loc].getText().equals("a")) {
-      // checking to see if the pawn is taking a piece on the top or bottom rows of the board
-      // if the pawn is taking a piece and the piece is not the king, the pawn will be promoted
+      // checking to see if the pawn is taking a piece on the top or bottom rows of
+      // the board
+      // if the pawn is taking a piece and the piece is not the king, the pawn will be
+      // promoted
       if (pieceHeld.equals("wPawn") && loc / 8 == 0 && !pieceLoc.get(loc).equals("bKing")) {
         removePiece(loc, pieceLoc.get(loc), false);
         promotePawn(loc, "White");
@@ -185,7 +189,8 @@ public class Move extends PieceFunctionality {
       canWhiteCastle1 = false;
     if ((!pieceLoc.containsKey(63) || pieceLoc.containsKey(63) && !pieceLoc.get(63).equals("wRook")) && canWhiteCastle2)
       canWhiteCastle2 = false;
-    if ((!pieceLoc.containsKey(60) || pieceLoc.containsKey(60) && !pieceLoc.get(60).equals("wKing")) && !whiteKingMoved) {
+    if ((!pieceLoc.containsKey(60) || pieceLoc.containsKey(60) && !pieceLoc.get(60).equals("wKing"))
+        && !whiteKingMoved) {
       canWhiteCastle1 = false;
       canWhiteCastle2 = false;
       whiteKingMoved = true;

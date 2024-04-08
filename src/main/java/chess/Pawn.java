@@ -3,9 +3,8 @@ package chess;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-public class Pawn extends PieceFunctionality implements Images, ActionListener {
+public class Pawn extends PieceFunctionality {
   public JFrame frame = new JFrame();
   public JLabel textField = new JLabel();
   public JPanel titlePanel = new JPanel();

@@ -4,12 +4,12 @@ import java.util.stream.IntStream;
 
 public class King extends PieceUtils {
   public static void display() {
-    int[] kingLoc = {location - 1, location + 1,
-            location - 9, location - 8, location - 7, location + 7, location + 8, location + 9};
+    int[] kingLoc = { location - 1, location + 1,
+        location - 9, location - 8, location - 7, location + 7, location + 8, location + 9 };
     IntStream.range(0, 8)
-            .filter(i -> 0 <= kingLoc[i] && kingLoc[i] < 64 && inLine(kingLoc[i], i < 2 ? 0 : 1))
-            .mapToObj(i -> new Check(kingLoc[i]))
-            .forEach(Check::checkLoc);
+        .filter(i -> 0 <= kingLoc[i] && kingLoc[i] < 64 && inLine(kingLoc[i], i < 2 ? 0 : 1))
+        .mapToObj(i -> new Check(kingLoc[i]))
+        .forEach(Check::checkLoc);
   }
 
   public static void castle() {
@@ -63,4 +63,3 @@ public class King extends PieceUtils {
     return Math.abs(location / 8 - locGiven / 8) == distance;
   }
 }
-
