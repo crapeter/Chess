@@ -94,15 +94,14 @@ public class Move extends PieceFunctionality {
             removePiece(upLeft ? location - 1 : location + 1, "bPawn", true);
           }
           //setting en passant if applicable
-          if (whitePawnMove[1][location % 8] == 0)
-            whitePawnMove[1][location % 8] = loc;
+          if (Math.abs(loc - location) == 16)
+            whiteEnPassant[location % 8] = true;
+
           //ensuring that only one pawn is en passant able at a time
-          for (int i = 0; i < location % 8; i++)
-            if (whitePawnMove[1][i] != 0)
-              whitePawnMove[1][i] = 1;
-          for (int i = (location + 1) % 8; i < 8; i++)
-            if (whitePawnMove[1][i] != 0)
-              whitePawnMove[1][i] = 1;
+          for (int i = 0; i < 8; i++) {
+            if (i == location % 8) continue;
+            whiteEnPassant[i] = false;
+          }
         }
         case "bPawn" -> {
           if (loc / 8 == 7) {
@@ -112,15 +111,14 @@ public class Move extends PieceFunctionality {
             removePiece(downLeft ? location - 1 : location + 1, "wPawn", true);
           }
           //setting en passant if applicable
-          if (blackPawnMove[1][location % 8] == 0)
-            blackPawnMove[1][location % 8] = loc;
+          if (Math.abs(loc - location) == 16)
+            blackEnPassant[location % 8] = true;
+
           //ensuring that only one pawn is en passant able at a time
-          for (int i = 0; i < location % 8; i++)
-            if (blackPawnMove[1][i] != 0)
-              blackPawnMove[1][i] = 1;
-          for (int i = (location + 1) % 8; i < 8; i++)
-            if (blackPawnMove[1][i] != 0)
-              blackPawnMove[1][i] = 1;
+          for (int i = 0; i < 8; i++) {
+            if (i == location % 8) continue;
+            blackEnPassant[i] = false;
+          }
         }
         case "wKing" -> {
           if (loc == 57 && canWhiteCastle1 && !whiteKingMoved)

@@ -41,11 +41,11 @@ public class Wpawn extends PieceFunctionality {
 
   public static void enPassant(int loc) {
     if (pieceLoc.containsKey(loc - 1) && pieceLoc.get(loc - 1).equals("bPawn") && loc % 8 != 0 && loc / 8 == 3) {
-      if (Math.abs(blackPawnMove[0][(location - 1) % 8] - blackPawnMove[1][(location - 1) % 8]) == 16)
+      if (blackEnPassant[(location - 1) % 8])
         displayMoves(loc - 9, buttons);
     }
     if (pieceLoc.containsKey(loc + 1) && pieceLoc.get(loc + 1).equals("bPawn") && loc % 8 != 7 && loc / 8 == 3) {
-      if (Math.abs(blackPawnMove[0][(location + 1) % 8] - blackPawnMove[1][(location + 1) % 8]) == 16)
+      if (blackEnPassant[(location + 1) % 8])
         displayMoves(loc - 7, buttons);
     }
   }

@@ -7,8 +7,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class PieceFunctionality extends PieceUtils implements ActionListener, SetupVars, Images {
-  public static int[][] whitePawnMove = new int[2][8];
-  public static int[][] blackPawnMove = new int[2][8];
+  public static boolean[] whiteEnPassant = new boolean[8];
+  public static boolean[] blackEnPassant = new boolean[8];
 
   public void addFunctionality() {
     int firstWhitePawn = 48;
@@ -18,8 +18,8 @@ public class PieceFunctionality extends PieceUtils implements ActionListener, Se
       buttons[i].addActionListener(this);
     }
     for (int i = 0; i < 8; i++) {
-      whitePawnMove[0][i] = firstWhitePawn + i;
-      blackPawnMove[0][i] = firstBlackPawn + i;
+      whiteEnPassant[i] = false;
+      blackEnPassant[i] = false;
     }
   }
 
