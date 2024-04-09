@@ -21,6 +21,7 @@ public class Attacking extends PieceUtils {
         return pawn();
       }
       case "wKnight", "bKnight" -> {
+        System.out.println("Hello");
         return knight();
       }
       case "wRook", "bRook" -> {
@@ -61,18 +62,18 @@ public class Attacking extends PieceUtils {
     for (int i : knightLoc1) {
       boolean inLine = Math.abs((newPieceLoc / 8) - (i / 8)) == 1;
       boolean inBound = 0 <= i && i < 64;
-      if (inBound && inLine && currentlyWhite && pieceLoc.containsKey(i) && pieceLoc.get(i).equals("bKing")) {
+      if (inBound && inLine && !currentlyWhite && pieceLoc.containsKey(i) && pieceLoc.get(i).equals("bKing")) {
         return true;
-      } else if (inBound && inLine && !currentlyWhite && pieceLoc.containsKey(i) && pieceLoc.get(i).equals("wKing")) {
+      } else if (inBound && inLine && currentlyWhite && pieceLoc.containsKey(i) && pieceLoc.get(i).equals("wKing")) {
         return true;
       }
     }
     for (int i : knightLoc2) {
       boolean inLine = Math.abs((newPieceLoc / 8) - (i / 8)) == 2;
       boolean inBound = 0 <= i && i < 64;
-      if (inBound && inLine && currentlyWhite && pieceLoc.containsKey(i) && pieceLoc.get(i).equals("bKing")) {
+      if (inBound && inLine && !currentlyWhite && pieceLoc.containsKey(i) && pieceLoc.get(i).equals("bKing")) {
         return true;
-      } else if (inBound && inLine && !currentlyWhite && pieceLoc.containsKey(i) && pieceLoc.get(i).equals("wKing")) {
+      } else if (inBound && inLine && currentlyWhite && pieceLoc.containsKey(i) && pieceLoc.get(i).equals("wKing")) {
         return true;
       }
     }
@@ -83,15 +84,15 @@ public class Attacking extends PieceUtils {
     int[] whitePawnLoc = { newPieceLoc - 9, newPieceLoc - 7 };
     int[] blackPawnLoc = { newPieceLoc + 9, newPieceLoc + 7 };
     if (currentlyWhite) {
-      for (int i : whitePawnLoc) {
-        if (0 <= i && pieceLoc.containsKey(i) && pieceLoc.get(i).equals("bKing")
+      for (int i : blackPawnLoc) {
+        if (0 <= i && pieceLoc.containsKey(i) && pieceLoc.get(i).equals("wKing")
             && Math.abs((newPieceLoc / 8) - (i / 8)) == 1) {
           return true;
         }
       }
     } else {
-      for (int i : blackPawnLoc) {
-        if (i < 64 && pieceLoc.containsKey(i) && pieceLoc.get(i).equals("wKing")
+      for (int i : whitePawnLoc) {
+        if (i < 64 && pieceLoc.containsKey(i) && pieceLoc.get(i).equals("bKing")
             && Math.abs((newPieceLoc / 8) - (i / 8)) == 1) {
           return true;
         }

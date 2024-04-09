@@ -1,7 +1,5 @@
 package chess;
 
-import java.util.*;
-
 public class Move extends PieceFunctionality {
   private static boolean whiteKingMoved = false;
   private static boolean blackKingMoved = false;

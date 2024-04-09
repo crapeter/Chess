@@ -132,6 +132,8 @@ public class Draw extends PieceUtils implements ActionListener {
             buttons[i].setIcon(bForfeit);
           }
         }
+        currentlyWhite = true;
+        resetBoardColor();
       } else {
         font = forfeit.getFont();
         newFont = font.deriveFont(21f);
@@ -140,7 +142,6 @@ public class Draw extends PieceUtils implements ActionListener {
         pieceLoc.clear();
         PieceSetup piece = new PieceSetup();
         piece.place();
-        currentlyWhite = true;
         gameOver = false;
         panelDisplay(capturedWhitePanel1, null, false);
         panelDisplay(capturedWhitePanel2, null, false);
