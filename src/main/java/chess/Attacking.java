@@ -18,10 +18,10 @@ public class Attacking extends PieceUtils {
   private boolean attacking() {
     switch (pieceHeld) {
       case "wPawn", "bPawn" -> {
-        return !pawn();
+        return pawn();
       }
       case "wKnight", "bKnight" -> {
-        return !knight();
+        return knight();
       }
       case "wRook", "bRook" -> {
         return vertical() || horizontal();
@@ -62,21 +62,21 @@ public class Attacking extends PieceUtils {
       boolean inLine = Math.abs((newPieceLoc / 8) - (i / 8)) == 1;
       boolean inBound = 0 <= i && i < 64;
       if (inBound && inLine && currentlyWhite && pieceLoc.containsKey(i) && pieceLoc.get(i).equals("bKing")) {
-        return false;
+        return true;
       } else if (inBound && inLine && !currentlyWhite && pieceLoc.containsKey(i) && pieceLoc.get(i).equals("wKing")) {
-        return false;
+        return true;
       }
     }
     for (int i : knightLoc2) {
       boolean inLine = Math.abs((newPieceLoc / 8) - (i / 8)) == 2;
       boolean inBound = 0 <= i && i < 64;
       if (inBound && inLine && currentlyWhite && pieceLoc.containsKey(i) && pieceLoc.get(i).equals("bKing")) {
-        return false;
+        return true;
       } else if (inBound && inLine && !currentlyWhite && pieceLoc.containsKey(i) && pieceLoc.get(i).equals("wKing")) {
-        return false;
+        return true;
       }
     }
-    return true;
+    return false;
   }
 
   private boolean pawn() {
@@ -86,18 +86,18 @@ public class Attacking extends PieceUtils {
       for (int i : whitePawnLoc) {
         if (0 <= i && pieceLoc.containsKey(i) && pieceLoc.get(i).equals("bKing")
             && Math.abs((newPieceLoc / 8) - (i / 8)) == 1) {
-          return false;
+          return true;
         }
       }
     } else {
       for (int i : blackPawnLoc) {
         if (i < 64 && pieceLoc.containsKey(i) && pieceLoc.get(i).equals("wKing")
             && Math.abs((newPieceLoc / 8) - (i / 8)) == 1) {
-          return false;
+          return true;
         }
       }
     }
-    return true;
+    return false;
   }
 
   private boolean moveVertically(int increment) {

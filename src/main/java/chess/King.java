@@ -18,8 +18,7 @@ public class King extends PieceUtils {
       for (int i = location - 1; i > 0; i--) {
         if (pieceLoc.containsKey(i))
           break;
-        else
-          count1++;
+        count1++;
       }
       if (count1 == 3 && pieceLoc.containsKey(0) && pieceLoc.get(0).equals("bRook") && pieceHeld.equals("bKing"))
         displayMoves(1, buttons);
@@ -29,8 +28,7 @@ public class King extends PieceUtils {
       for (int i = location + 1; i < 7; i++) {
         if (pieceLoc.containsKey(i))
           break;
-        else
-          count2++;
+        count2++;
       }
       if (count2 == 2 && pieceLoc.containsKey(7) && pieceLoc.get(7).equals("bRook") && pieceHeld.equals("bKing"))
         displayMoves(6, buttons);
@@ -40,8 +38,7 @@ public class King extends PieceUtils {
       for (int i = location - 1; i > 56; i--) {
         if (pieceLoc.containsKey(i))
           break;
-        else
-          count1++;
+        count1++;
       }
       if (count1 == 3 && pieceLoc.containsKey(56) && pieceLoc.get(56).equals("wRook") && pieceHeld.equals("wKing"))
         displayMoves(57, buttons);
@@ -51,8 +48,7 @@ public class King extends PieceUtils {
       for (int i = location + 1; i < 63; i++) {
         if (pieceLoc.containsKey(i))
           break;
-        else
-          count2++;
+        count2++;
       }
       if (count2 == 2 && pieceLoc.containsKey(63) && pieceLoc.get(63).equals("wRook") && pieceHeld.equals("wKing"))
         displayMoves(62, buttons);
