@@ -11,6 +11,7 @@ public class PieceFunctionality extends PieceUtils implements ActionListener {
   public static boolean[] blackEnPassant = new boolean[8];
 
   public void addFunctionality() {
+    // sets up the boards initial state
     currentlyWhite = true;
     for (int i = 0; i < 64; i++) {
       buttons[i].addActionListener(this);
@@ -32,6 +33,8 @@ public class PieceFunctionality extends PieceUtils implements ActionListener {
         if (gameOver) {
           break;
         }
+        // checks to see if the combined moves of each player is 100 to cause a
+        // stalemate
         if (numberOfMoves == 100) {
           gameOver = true;
           for (int j = 0; j < 64; j++) {
@@ -40,6 +43,7 @@ public class PieceFunctionality extends PieceUtils implements ActionListener {
           textField.setText("Stalemate");
           break;
         } else if (pieceLoc.containsKey(i) && !holdingPiece && !promoting) {
+          // picks up a piece
           if ((currentlyWhite && whitePiece.contains(pieceLoc.get(i)))
               || (!currentlyWhite && !whitePiece.contains(pieceLoc.get(i)))) {
             Move.grab(i);
@@ -49,24 +53,29 @@ public class PieceFunctionality extends PieceUtils implements ActionListener {
           }
           break;
         } else if (pieceLoc.containsKey(i) && holdingPiece && !promoting) {
+          // checks to see if the place you want to move already has a piece there
           if ((currentlyWhite && whitePiece.contains(pieceLoc.get(i)))
               || (!currentlyWhite && !whitePiece.contains(pieceLoc.get(i)))) {
+            // replaces the piece you're holding with a piece of the same color
             placePiece(location, icon, pieceHeld);
             resetBoardColor();
             Move.grab(i);
             break;
           } else {
+            // takes the piece in the spot you want to move
             Move.take(i);
             resetBoardColor();
             Attacking attacking = new Attacking(i);
             attacking.isAttacking();
           }
         } else if (!pieceLoc.containsKey(i) && holdingPiece && !promoting) {
+          // moves the piece to an empty location
           Move.empty(i);
           resetBoardColor();
           Attacking attacking = new Attacking(i);
           attacking.isAttacking();
         }
+        // clears the board and checks for both kings
         for (int j = 0; j < 64; j++) {
           if (!buttons[j].getText().isEmpty()) {
             buttons[j].setText("");
@@ -78,6 +87,7 @@ public class PieceFunctionality extends PieceUtils implements ActionListener {
             whiteKing = true;
           }
         }
+        // check to see if the game is over through a king being taken
         if (!whiteKing || !blackKing) {
           gameOver = true;
           numberOfMoves = 0;
@@ -90,6 +100,7 @@ public class PieceFunctionality extends PieceUtils implements ActionListener {
           forfeit.setText("Restart");
           textField.setText(whiteKing ? "White wins" : "Black wins");
         }
+        // displays the moves to the console
         String columns = "abcdefgh";
         String rows = "87654321";
         String move = String.valueOf(columns.charAt(i % 8)) + rows.charAt(i / 8);

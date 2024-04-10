@@ -9,7 +9,6 @@ class Check extends PieceUtils {
 
   public Check(int loc) {
     this.kingLoc = loc;
-
   }
 
   public void checkLoc() {

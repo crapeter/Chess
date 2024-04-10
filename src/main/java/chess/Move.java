@@ -116,9 +116,6 @@ public class Move extends PieceFunctionality {
           }
         }
         case "wKing" -> {
-          System.out.println(loc);
-          System.out.println(canWhiteCastle1);
-          System.out.println(!whiteKingMoved);
           if (loc == 57 && canWhiteCastle1 && !whiteKingMoved)
             swapPiece(56, 58, wRook, "wRook");
           if (loc == 62 && canWhiteCastle2 && !whiteKingMoved)
@@ -152,10 +149,11 @@ public class Move extends PieceFunctionality {
     }
 
     if (!currentPieceColor.equals(takingPieceColor) && buttons[loc].getText().equals("a")) {
-      // checking to see if the pawn is taking a piece on the top or bottom rows of
-      // the board
-      // if the pawn is taking a piece and the piece is not the king, the pawn will be
-      // promoted
+      /*
+       * checking to see if the pawn is taking a piece on the top or bottom rows of
+       * the board if the pawn is taking a piece and the piece is not the king, the
+       * pawn will be promoted
+       */
       if (pieceHeld.equals("wPawn") && loc / 8 == 0 && !pieceLoc.get(loc).equals("bKing")) {
         removePiece(loc, pieceLoc.get(loc), false);
         promotePawn(loc, "White");
