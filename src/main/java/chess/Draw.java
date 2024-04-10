@@ -2,6 +2,8 @@ package chess;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
+import javax.swing.border.EmptyBorder;
+import javax.swing.plaf.basic.BasicButtonUI;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -41,6 +43,8 @@ public class Draw extends PieceUtils implements ActionListener {
       buttons[i] = new JButton();
       panel.add(buttons[i]);
       buttons[i].setFocusable(false);
+      buttons[i].setUI(new BasicButtonUI());
+      buttons[i].setBorder(new EmptyBorder(0, 0, 0, 0));
       if (!white)
         buttons[i].setBackground(new Color(118, 150, 86));
       else

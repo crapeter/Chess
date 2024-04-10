@@ -11,7 +11,7 @@ public class PieceFunctionality extends PieceUtils implements ActionListener {
   public static boolean[] blackEnPassant = new boolean[8];
 
   public void addFunctionality() {
-    // sets up the boards initial state
+    // add the listener to each tile
     currentlyWhite = true;
     for (int i = 0; i < 64; i++) {
       buttons[i].addActionListener(this);

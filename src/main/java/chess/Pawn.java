@@ -1,6 +1,7 @@
 package chess;
 
 import javax.swing.*;
+import javax.swing.plaf.basic.BasicButtonUI;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
@@ -36,6 +37,8 @@ public class Pawn extends PieceFunctionality {
       panel.add(buttons[i]);
       buttons[i].setFocusable(false);
       buttons[i].addActionListener(this);
+      buttons[i].setBackground(Color.white);
+      buttons[i].setUI(new BasicButtonUI());
       switch (i) {
         case 0 -> buttons[i].setText(color + " Queen");
         case 1 -> buttons[i].setText(color + " Knight");

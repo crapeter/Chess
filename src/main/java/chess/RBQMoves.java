@@ -1,6 +1,7 @@
 package chess;
 
 public abstract class RBQMoves extends PieceUtils {
+  // rook moves
   public static void move1() {
     for (int i = location + 1; i < 64; i++) {
       if (i / 8 != location / 8)
@@ -32,6 +33,7 @@ public abstract class RBQMoves extends PieceUtils {
     }
   }
 
+  // bishop moves
   public static void move2() {
     for (int i = location + 9; i < 64; i += 9) {
       if (i % 8 == 0)

@@ -116,12 +116,16 @@ public class Move extends PieceFunctionality {
           }
         }
         case "wKing" -> {
+          // checking for castling and then moving the Knight
+          // the king gets moved at the end of the function
           if (loc == 57 && canWhiteCastle1 && !whiteKingMoved)
             swapPiece(56, 58, wRook, "wRook");
           if (loc == 62 && canWhiteCastle2 && !whiteKingMoved)
             swapPiece(63, 61, wRook, "wRook");
         }
         case "bKing" -> {
+          // checking for castling and then moving the Knight
+          // the king gets moved at the end of the function
           if (loc == 1 && canBlackCastle1 && !blackKingMoved)
             swapPiece(0, 2, bRook, "bRook");
           if (loc == 6 && canBlackCastle1 && !blackKingMoved)
@@ -141,6 +145,7 @@ public class Move extends PieceFunctionality {
     String currentPieceColor = "white";
     String takingPieceColor = "white";
 
+    // gets the color of the two pieces
     for (String piece : blackPieces) {
       if (pieceHeld.equals(piece))
         currentPieceColor = "black";
