@@ -91,9 +91,6 @@ public class PieceFunctionality extends PieceUtils implements ActionListener {
         if (!whiteKing || !blackKing) {
           gameOver = true;
           numberOfMoves = 0;
-          for (int j = 0; j < 64; j++) {
-            buttons[j].removeActionListener(this);
-          }
           Font font = forfeit.getFont();
           Font newFont = font.deriveFont(18f);
           forfeit.setFont(newFont);
