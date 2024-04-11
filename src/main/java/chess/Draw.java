@@ -24,7 +24,7 @@ public class Draw extends PieceUtils implements ActionListener {
 
   public void draw() {
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    frame.setSize(1115, 900);
+    frame.setSize(900, 900);
     frame.setLocationRelativeTo(null);
     frame.setResizable(false);
     textField.setBackground(Color.black);
@@ -63,17 +63,18 @@ public class Draw extends PieceUtils implements ActionListener {
     capturedWhitePanel2.setBackground(new Color(28, 28, 28));
     capturedBlackPanel2.setLayout(new BoxLayout(capturedBlackPanel2, BoxLayout.Y_AXIS));
     capturedBlackPanel2.setBackground(Color.white.darker());
-    forfeitPanel.setPreferredSize(new Dimension(100, 900));
+    forfeitPanel.setPreferredSize(new Dimension(800, 75));
     forfeitPanel.setLayout(new BoxLayout(forfeitPanel, BoxLayout.PAGE_AXIS));
-    forfeitPanel.setBackground(new Color(28, 28, 28));
+    forfeitPanel.setBackground(Color.black);
     forfeit.setFocusable(false);
     forfeit.setLayout(new BoxLayout(forfeit, BoxLayout.PAGE_AXIS));
     forfeit.setBackground(Color.red.darker());
+    forfeit.setPreferredSize(new Dimension(800, 200));
     forfeit.addActionListener(this);
-    forfeit.setPreferredSize(new Dimension(100, 200));
     forfeit.setText("Forfeit");
+    forfeit.setForeground(Color.black);
     font = forfeit.getFont();
-    newFont = font.deriveFont(21f);
+    newFont = font.deriveFont(17f);
     forfeit.setFont(newFont);
     forfeitPanel.add(forfeit);
     capturedPanel.add(capturedWhitePanel1);
@@ -84,7 +85,7 @@ public class Draw extends PieceUtils implements ActionListener {
     frame.add(titlePanel, BorderLayout.NORTH);
     frame.add(panel, BorderLayout.CENTER);
     frame.add(capturedPanel, BorderLayout.EAST);
-    frame.add(forfeitPanel, BorderLayout.WEST);
+    frame.add(forfeitPanel, BorderLayout.SOUTH);
     frame.setVisible(true);
     timer.schedule(task, 1500);
   }
@@ -125,7 +126,7 @@ public class Draw extends PieceUtils implements ActionListener {
       if (forfeit.getText().equals("Forfeit")) {
         textField.setText(currentlyWhite ? "White Forfeited" : "Black Forfeited");
         font = forfeit.getFont();
-        newFont = font.deriveFont(19f);
+        newFont = font.deriveFont(15.47f);
         forfeit.setFont(newFont);
         forfeit.setText("Restart");
         gameOver = true;
@@ -138,7 +139,7 @@ public class Draw extends PieceUtils implements ActionListener {
         }
       } else {
         font = forfeit.getFont();
-        newFont = font.deriveFont(21f);
+        newFont = font.deriveFont(17f);
         forfeit.setFont(newFont);
         forfeit.setText("Forfeit");
         pieceLoc.clear();
