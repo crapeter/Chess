@@ -63,7 +63,7 @@ public class Draw extends PieceUtils implements ActionListener {
     capturedWhitePanel2.setBackground(new Color(28, 28, 28));
     capturedBlackPanel2.setLayout(new BoxLayout(capturedBlackPanel2, BoxLayout.Y_AXIS));
     capturedBlackPanel2.setBackground(Color.white.darker());
-    forfeitPanel.setPreferredSize(new Dimension(115, 900));
+    forfeitPanel.setPreferredSize(new Dimension(100, 900));
     forfeitPanel.setLayout(new BoxLayout(forfeitPanel, BoxLayout.PAGE_AXIS));
     forfeitPanel.setBackground(new Color(28, 28, 28));
     forfeit.setFocusable(false);
@@ -73,7 +73,7 @@ public class Draw extends PieceUtils implements ActionListener {
     forfeit.setPreferredSize(new Dimension(100, 200));
     forfeit.setText("Forfeit");
     font = forfeit.getFont();
-    newFont = font.deriveFont(18f);
+    newFont = font.deriveFont(21f);
     forfeit.setFont(newFont);
     forfeitPanel.add(forfeit);
     capturedPanel.add(capturedWhitePanel1);
@@ -125,7 +125,7 @@ public class Draw extends PieceUtils implements ActionListener {
       if (forfeit.getText().equals("Forfeit")) {
         textField.setText(currentlyWhite ? "White Forfeited" : "Black Forfeited");
         font = forfeit.getFont();
-        newFont = font.deriveFont(18f);
+        newFont = font.deriveFont(19f);
         forfeit.setFont(newFont);
         forfeit.setText("Restart");
         gameOver = true;
