@@ -147,6 +147,7 @@ public class Draw extends PieceUtils implements ActionListener {
         piece.place();
         currentlyWhite = true;
         gameOver = false;
+        numberOfMoves = 0;
         panelDisplay(capturedWhitePanel1, null, false);
         panelDisplay(capturedWhitePanel2, null, false);
         panelDisplay(capturedBlackPanel1, null, false);
