@@ -24,17 +24,20 @@ public class Draw extends PieceUtils implements ActionListener {
 
   public void draw() {
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    frame.setSize(900, 900);
+    frame.setSize(1800, 900);
     frame.setLocationRelativeTo(null);
     frame.setResizable(false);
+
     textField.setBackground(Color.black);
     textField.setForeground(new Color(0, 66, 0));
     textField.setFont(new Font("Verdana", Font.PLAIN, 75));
     textField.setHorizontalAlignment(JLabel.CENTER);
     textField.setText("Chess");
     textField.setOpaque(true);
+
     titlePanel.setLayout(new BorderLayout());
     titlePanel.setBounds(0, 0, 800, 100);
+
     panel.setLayout(new GridLayout(8, 8));
     panel.setEnabled(false);
     panel.setBackground(Color.black);
@@ -55,17 +58,21 @@ public class Draw extends PieceUtils implements ActionListener {
     capturedPanel.setPreferredSize(new Dimension(200, 800));
     capturedPanel.setBackground(Color.gray);
     capturedPanel.setLayout(new GridLayout(2, 2));
+
     capturedWhitePanel1.setLayout(new BoxLayout(capturedWhitePanel1, BoxLayout.Y_AXIS));
     capturedWhitePanel1.setBackground(new Color(28, 28, 28));
     capturedBlackPanel1.setLayout(new BoxLayout(capturedBlackPanel1, BoxLayout.Y_AXIS));
     capturedBlackPanel1.setBackground(Color.white.darker());
+
     capturedWhitePanel2.setLayout(new BoxLayout(capturedWhitePanel2, BoxLayout.Y_AXIS));
     capturedWhitePanel2.setBackground(new Color(28, 28, 28));
     capturedBlackPanel2.setLayout(new BoxLayout(capturedBlackPanel2, BoxLayout.Y_AXIS));
     capturedBlackPanel2.setBackground(Color.white.darker());
+
     forfeitPanel.setPreferredSize(new Dimension(800, 75));
     forfeitPanel.setLayout(new BoxLayout(forfeitPanel, BoxLayout.PAGE_AXIS));
     forfeitPanel.setBackground(Color.black);
+
     forfeit.setFocusable(false);
     forfeit.setLayout(new BoxLayout(forfeit, BoxLayout.PAGE_AXIS));
     forfeit.setBackground(Color.red.darker());
@@ -77,11 +84,14 @@ public class Draw extends PieceUtils implements ActionListener {
     newFont = font.deriveFont(17f);
     forfeit.setFont(newFont);
     forfeitPanel.add(forfeit);
+
     capturedPanel.add(capturedWhitePanel1);
     capturedPanel.add(capturedWhitePanel2);
     capturedPanel.add(capturedBlackPanel1);
     capturedPanel.add(capturedBlackPanel2);
+
     titlePanel.add(textField);
+
     frame.add(titlePanel, BorderLayout.NORTH);
     frame.add(panel, BorderLayout.CENTER);
     frame.add(capturedPanel, BorderLayout.EAST);
