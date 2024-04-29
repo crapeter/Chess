@@ -24,7 +24,7 @@ public class Draw extends PieceUtils implements ActionListener {
 
   public void draw() {
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    frame.setSize(1800, 900);
+    frame.setSize(900, 900);
     frame.setLocationRelativeTo(null);
     frame.setResizable(false);
 
@@ -157,6 +157,7 @@ public class Draw extends PieceUtils implements ActionListener {
         piece.place();
         currentlyWhite = true;
         gameOver = false;
+        numberOfMoves = 0;
         panelDisplay(capturedWhitePanel1, null, false);
         panelDisplay(capturedWhitePanel2, null, false);
         panelDisplay(capturedBlackPanel1, null, false);
