@@ -42,6 +42,7 @@ public class Draw extends PieceUtils implements ActionListener {
     panel.setEnabled(false);
     panel.setBackground(Color.black);
     panel.setBorder(new LineBorder(new Color(118, 150, 86).darker(), 3));
+
     for (int i = 0; i < 64; i++) {
       buttons[i] = new JButton();
       panel.add(buttons[i]);
@@ -55,6 +56,7 @@ public class Draw extends PieceUtils implements ActionListener {
       if (i % 8 != 7)
         white = !white;
     }
+
     capturedPanel.setPreferredSize(new Dimension(200, 800));
     capturedPanel.setBackground(Color.gray);
     capturedPanel.setLayout(new GridLayout(2, 2));
