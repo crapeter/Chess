@@ -41,12 +41,6 @@ public class Pawn extends PieceFunctionality {
       buttons[i].setBackground(Color.white);
       buttons[i].setUI(new BasicButtonUI());
       buttons[i].setText(color + pieceNames[i]);
-      // switch (i) {
-      // case 0 -> buttons[i].setText(color + " Queen");
-      // case 1 -> buttons[i].setText(color + " Knight");
-      // case 2 -> buttons[i].setText(color + " Bishop");
-      // case 3 -> buttons[i].setText(color + " Rook");
-      // }
       buttons[i].setFont(new Font("Verdana", Font.PLAIN, 20));
     }
     titlePanel.add(textField);
