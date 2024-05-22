@@ -21,7 +21,6 @@ public class Attacking extends PieceUtils {
         return pawn();
       }
       case "wKnight", "bKnight" -> {
-        System.out.println("Hello");
         return knight();
       }
       case "wRook", "bRook" -> {
