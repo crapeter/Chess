@@ -62,12 +62,12 @@ public class Draw extends PieceUtils implements ActionListener {
     capturedPanel.setLayout(new GridLayout(2, 2));
 
     capturedWhitePanel1.setLayout(new BoxLayout(capturedWhitePanel1, BoxLayout.Y_AXIS));
-    capturedWhitePanel1.setBackground(new Color(28, 28, 28));
+    capturedWhitePanel1.setBackground(new Color(45, 45, 45));
     capturedBlackPanel1.setLayout(new BoxLayout(capturedBlackPanel1, BoxLayout.Y_AXIS));
     capturedBlackPanel1.setBackground(Color.white.darker());
 
     capturedWhitePanel2.setLayout(new BoxLayout(capturedWhitePanel2, BoxLayout.Y_AXIS));
-    capturedWhitePanel2.setBackground(new Color(28, 28, 28));
+    capturedWhitePanel2.setBackground(new Color(45, 45, 45));
     capturedBlackPanel2.setLayout(new BoxLayout(capturedBlackPanel2, BoxLayout.Y_AXIS));
     capturedBlackPanel2.setBackground(Color.white.darker());
 
