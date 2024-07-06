@@ -7,6 +7,8 @@ import javax.swing.plaf.basic.BasicButtonUI;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -49,10 +51,14 @@ public class Draw extends PieceUtils implements ActionListener {
       buttons[i].setFocusable(false);
       buttons[i].setUI(new BasicButtonUI());
       buttons[i].setBorder(new EmptyBorder(0, 0, 0, 0));
-      if (!white)
+      if (!white) {
         buttons[i].setBackground(new Color(118, 150, 86));
-      else
+        init(buttons[i], new Color(118, 150, 86));
+      }
+      else {
         buttons[i].setBackground(new Color(238, 238, 210));
+        init(buttons[i], new Color(238, 238, 210));
+      }
       if (i % 8 != 7)
         white = !white;
     }
@@ -170,5 +176,19 @@ public class Draw extends PieceUtils implements ActionListener {
         resetBoardColor();
       }
     }
+  }
+
+  private void init(JButton button, Color color) {
+    button.addMouseListener(new MouseAdapter() {
+      @Override
+      public void mouseEntered(MouseEvent e) {
+        button.setBorder(new LineBorder(Color.black, 3));
+      }
+
+      @Override
+      public void mouseExited(MouseEvent e) {
+        button.setBorder(new EmptyBorder(0, 0, 0, 0));
+      }
+    });
   }
 }
