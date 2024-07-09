@@ -137,6 +137,7 @@ public class Move extends PieceFunctionality {
       numberOfMoves++;
       checkBlackCastle();
       checkWhiteCastle();
+      displayMove(location);
     }
   }
 
@@ -175,6 +176,7 @@ public class Move extends PieceFunctionality {
       swapPiece(location, location, icon, pieceHeld);
       System.out.println("Choose a legal move bozo");
     }
+    displayMove(location);
   }
 
   private static void promotePawn(int loc, String color) {

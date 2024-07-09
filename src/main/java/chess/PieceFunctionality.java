@@ -97,14 +97,16 @@ public class PieceFunctionality extends PieceUtils implements ActionListener {
           forfeit.setText("Restart");
           textField.setText(whiteKing ? "White wins" : "Black wins");
         }
-        // displays the moves to the console
-        String columns = "abcdefgh";
-        String rows = "87654321";
-        String move = String.valueOf(columns.charAt(i % 8)) + rows.charAt(i / 8);
-        String pName = pieceName();
-        System.out.println(pName + " moved to: " + move);
       }
     }
+  }
+
+  public static void displayMove(int loc) {
+    String columns = "abcdefgh";
+    String rows = "87654321";
+    String move = String.valueOf(columns.charAt(loc % 8)) + rows.charAt(loc / 8);
+    String pName = pieceName();
+    Draw.addMove(pName + " to: " + move);
   }
 
   private static String pieceName() {

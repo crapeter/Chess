@@ -17,4 +17,7 @@ public interface SetupVars {
   JPanel capturedBlackPanel1 = new JPanel();
   JPanel capturedWhitePanel2 = new JPanel();
   JPanel capturedBlackPanel2 = new JPanel();
+  DefaultListModel<String> defaultChessMoves = new DefaultListModel<>();
+  JList<String> chessMovesList = new JList<>(defaultChessMoves);
+  JScrollPane chessMovesPanel = new JScrollPane(chessMovesList);
 }

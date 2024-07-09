@@ -26,7 +26,7 @@ public class Draw extends PieceUtils implements ActionListener {
 
   public void draw() {
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    frame.setSize(900, 900);
+    frame.setSize(1075, 900);
     frame.setLocationRelativeTo(null);
     frame.setResizable(false);
 
@@ -98,12 +98,15 @@ public class Draw extends PieceUtils implements ActionListener {
     capturedPanel.add(capturedBlackPanel1);
     capturedPanel.add(capturedBlackPanel2);
 
+    chessMovesPanel.setPreferredSize(new Dimension(175, 800));
+
     titlePanel.add(textField);
 
     frame.add(titlePanel, BorderLayout.NORTH);
     frame.add(panel, BorderLayout.CENTER);
     frame.add(capturedPanel, BorderLayout.EAST);
     frame.add(forfeitPanel, BorderLayout.SOUTH);
+    frame.add(chessMovesPanel, BorderLayout.WEST);
     frame.setVisible(true);
     timer.schedule(task, 1500);
   }
@@ -138,6 +141,12 @@ public class Draw extends PieceUtils implements ActionListener {
     panel.repaint();
   }
 
+  public static void addMove(String move) {
+    defaultChessMoves.addElement(move);
+    chessMovesPanel.revalidate();
+    chessMovesPanel.repaint();
+  }
+
   @Override
   public void actionPerformed(ActionEvent e) {
     if (e.getSource() == forfeit) {
@@ -163,16 +172,21 @@ public class Draw extends PieceUtils implements ActionListener {
         pieceLoc.clear();
         PieceSetup piece = new PieceSetup();
         piece.place();
-        currentlyWhite = true;
-        gameOver = false;
-        numberOfMoves = 0;
+        if (textField.getText().equals("White Forfeited") || textField.getText().equals("Black Forfeited")) {
+          textField.setText("White's turn");
+        }
+        for (int i = 0; i < numberOfMoves; i++) {
+          defaultChessMoves.remove(0);
+          chessMovesPanel.revalidate();
+          chessMovesPanel.repaint();
+        }
         panelDisplay(capturedWhitePanel1, null, false);
         panelDisplay(capturedWhitePanel2, null, false);
         panelDisplay(capturedBlackPanel1, null, false);
         panelDisplay(capturedBlackPanel2, null, false);
-        if (textField.getText().equals("White Forfeited") || textField.getText().equals("Black Forfeited")) {
-          textField.setText("White's turn");
-        }
+        currentlyWhite = true;
+        gameOver = false;
+        numberOfMoves = 0;
         resetBoardColor();
       }
     }
