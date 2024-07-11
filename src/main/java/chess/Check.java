@@ -19,13 +19,11 @@ class Check extends PieceUtils {
     }
   }
 
-  public static boolean checkForCheck(int loc) {
+  public static void checkForCheck(int loc) {
     kingLoc = loc;
     if (!isKingSafe()) {
       textField.setText(currentlyWhite ? "White's in check" : "Black's in check");
-      return true;
     }
-    return false;
   }
 
   private static boolean isKingSafe() {

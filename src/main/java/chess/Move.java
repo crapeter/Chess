@@ -189,9 +189,8 @@ public class Move extends PieceFunctionality {
     displayMove(loc);
   }
 
-  public static boolean checkForKingInCheck() {
-    Check check = new Check(currentlyWhite ? whiteKingLocation : blackKingLocation);
-    return check.checkForCheck(currentlyWhite ? whiteKingLocation : blackKingLocation);
+  public static void checkForKingInCheck() {
+    Check.checkForCheck(currentlyWhite ? whiteKingLocation : blackKingLocation);
   }
 
   private static void promotePawn(int loc, String color) {
