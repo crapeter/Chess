@@ -5,10 +5,10 @@ import java.awt.*;
 class Check extends PieceUtils {
   private static final int BOARD_SIZE = 64;
   private static final int ROW_LENGTH = 8;
-  private int kingLoc;
+  private static int kingLoc;
 
   public Check(int loc) {
-    this.kingLoc = loc;
+    kingLoc = loc;
   }
 
   public void checkLoc() {
@@ -19,44 +19,38 @@ class Check extends PieceUtils {
     }
   }
 
-  public boolean checkForCheck(int loc) {
-    this.kingLoc = loc;
+  public static boolean checkForCheck(int loc) {
+    kingLoc = loc;
     if (!isKingSafe()) {
-      System.out.println("White Check Locations");
-      whiteCheckLocations.forEach(System.out::println);
-
-      System.out.println("Black Check Locations");
-      blackCheckLocations.forEach(System.out::println);
-
-      textField.setText(currentlyWhite ? "White is in check" : "Black is in check");
+      textField.setText(currentlyWhite ? "White's in check" : "Black's in check");
       return true;
     }
     return false;
   }
 
-  private boolean isKingSafe() {
+  private static boolean isKingSafe() {
     return vertical() && horizontal()
         && rightDiagonal() && leftDiagonal()
         && checkKnight(kingLoc) && checkPawn(kingLoc);
   }
 
-  private boolean vertical() {
+  private static boolean vertical() {
     return moveDirectionally(-ROW_LENGTH) && moveDirectionally(ROW_LENGTH);
   }
 
-  private boolean horizontal() {
+  private static boolean horizontal() {
     return moveHorizontally(-1) && moveHorizontally(1);
   }
 
-  private boolean rightDiagonal() {
+  private static boolean rightDiagonal() {
     return moveDiagonally(-ROW_LENGTH + 1) && moveDiagonally(ROW_LENGTH + 1);
   }
 
-  private boolean leftDiagonal() {
+  private static boolean leftDiagonal() {
     return moveDiagonally(-ROW_LENGTH - 1) && moveDiagonally(ROW_LENGTH - 1);
   }
 
-  private boolean checkKnight(int loc) {
+  private static boolean checkKnight(int loc) {
     int[] knightLoc1 = { loc - 10, loc - 6, loc + 6, loc + 10 };
     int[] knightLoc2 = { loc - 17, loc - 15, loc + 15, loc + 17 };
     for (int i : knightLoc1) {
@@ -81,12 +75,10 @@ class Check extends PieceUtils {
       // location
       if (inBoundaries && inLine && currentlyWhite && pieceLoc.containsKey(i)) {
         if (pieceLoc.get(i).equals("bKnight")) {
-          blackCheckLocations.add(i);
           return false;
         }
       } else if (inBoundaries && inLine && !currentlyWhite && pieceLoc.containsKey(i)) {
         if (pieceLoc.get(i).equals("wKnight")) {
-          whiteCheckLocations.add(i);
           return false;
         }
       }
@@ -94,7 +86,7 @@ class Check extends PieceUtils {
     return true;
   }
 
-  private boolean checkPawn(int loc) {
+  private static boolean checkPawn(int loc) {
     int[] blackPawnLoc = { loc - 9, loc - 7 };
     int[] whitePawnLoc = { loc + 9, loc + 7 };
     if (currentlyWhite) {
@@ -102,7 +94,6 @@ class Check extends PieceUtils {
       for (int i : blackPawnLoc) {
         if (0 <= i && pieceLoc.containsKey(i) && pieceLoc.get(i).equals("bPawn")
             && Math.abs((loc / 8) - (i / 8)) == 1) {
-          blackCheckLocations.add(i);
           return false;
         }
       }
@@ -111,7 +102,6 @@ class Check extends PieceUtils {
       for (int i : whitePawnLoc) {
         if (i < 64 && pieceLoc.containsKey(i) && pieceLoc.get(i).equals("wPawn")
             && Math.abs((loc / 8) - (i / 8)) == 1) {
-          whiteCheckLocations.add(i);
           return false;
         }
       }
@@ -119,7 +109,7 @@ class Check extends PieceUtils {
     return true;
   }
 
-  private boolean moveDirectionally(int increment) {
+  private static boolean moveDirectionally(int increment) {
     for (int i = kingLoc + increment; i >= 0 && i < BOARD_SIZE; i += increment) {
       // return false if the piece is a rook because the king isn't safe
       if (checking(i, "Rook")) {
@@ -135,7 +125,7 @@ class Check extends PieceUtils {
     return true;
   }
 
-  private boolean moveHorizontally(int increment) {
+  private static boolean moveHorizontally(int increment) {
     for (int i = kingLoc + increment; i >= 0 && i < BOARD_SIZE
         && i / ROW_LENGTH == kingLoc / ROW_LENGTH; i += increment) {
       // return false if the piece is a rook because the king isn't safe
@@ -152,7 +142,7 @@ class Check extends PieceUtils {
     return true;
   }
 
-  private boolean moveDiagonally(int increment) {
+  private static boolean moveDiagonally(int increment) {
     for (int i = kingLoc + increment; i >= 0 && i < BOARD_SIZE; i += increment) {
       // checks if the bottom right or top right diags go out of bounds
       // otherwise checks if the bottom left or top left diags go out of bounds
@@ -175,7 +165,7 @@ class Check extends PieceUtils {
     return true;
   }
 
-  private boolean checking(int loc, String secondary) {
+  private static boolean checking(int loc, String secondary) {
     String opponentQueen = currentlyWhite ? "bQueen" : "wQueen";
     String opponentPiece = currentlyWhite ? "b" + secondary : "w" + secondary;
 
