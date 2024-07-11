@@ -87,6 +87,17 @@ public class PieceFunctionality extends PieceUtils implements ActionListener {
             whiteKing = true;
           }
         }
+        // checks to see if one of the kings is in check
+        boolean isInCheck = Move.checkForKingInCheck();
+        if (isInCheck) {
+          // check to see if the game is over through a checkmate
+        } else {
+          if (currentlyWhite) {
+            whiteCheckLocations.clear();
+          } else {
+            blackCheckLocations.clear();
+          }
+        }
         // check to see if the game is over through a king being taken
         if (!whiteKing || !blackKing) {
           gameOver = true;

@@ -2,12 +2,14 @@ package chess;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Arrays;
+import java.util.*;
 import java.util.List;
 
 public abstract class PieceUtils implements SetupVars, Images {
   public static int location = 0;
   public static int numberOfMoves = 0;
+  public static int whiteKingLocation = 60;
+  public static int blackKingLocation = 4;
   public static boolean holdingPiece = false;
   public static boolean canBlackCastle1 = true;
   public static boolean canWhiteCastle1 = true;
@@ -15,9 +17,12 @@ public abstract class PieceUtils implements SetupVars, Images {
   public static boolean canWhiteCastle2 = true;
   public static boolean promoting = false;
   public static boolean gameOver = false;
+  public static boolean currentlyWhite = true;
   public static String pieceHeld = "";
   public static ImageIcon icon = null;
-  public static boolean currentlyWhite = true;
+  public static Set<Integer> whiteCheckLocations = new HashSet<>();
+  public static Set<Integer> blackCheckLocations = new HashSet<>();
+
   private static ImageIcon takingIcon = null;
   private static final String[] whitePieces = { "wPawn", "wRook", "wKnight", "wBishop", "wQueen", "wKing" };
   private static final List<String> whitePiece = Arrays.asList(whitePieces);

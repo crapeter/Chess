@@ -5,7 +5,7 @@ import java.awt.*;
 class Check extends PieceUtils {
   private static final int BOARD_SIZE = 64;
   private static final int ROW_LENGTH = 8;
-  private final int kingLoc;
+  private int kingLoc;
 
   public Check(int loc) {
     this.kingLoc = loc;
@@ -17,6 +17,21 @@ class Check extends PieceUtils {
     } else if (!pieceLoc.containsKey(kingLoc)) {
       buttons[kingLoc].setBackground(Color.red.darker());
     }
+  }
+
+  public boolean checkForCheck(int loc) {
+    this.kingLoc = loc;
+    if (!isKingSafe()) {
+      System.out.println("White Check Locations");
+      whiteCheckLocations.forEach(System.out::println);
+
+      System.out.println("Black Check Locations");
+      blackCheckLocations.forEach(System.out::println);
+
+      textField.setText(currentlyWhite ? "White is in check" : "Black is in check");
+      return true;
+    }
+    return false;
   }
 
   private boolean isKingSafe() {
@@ -64,12 +79,14 @@ class Check extends PieceUtils {
       boolean inBoundaries = 0 <= i && i < 64;
       // checks the locations of possible knights that are within 2 row of the new
       // location
-      if (inBoundaries && inLine && pieceHeld.equals("wKing") && pieceLoc.containsKey(i)) {
+      if (inBoundaries && inLine && currentlyWhite && pieceLoc.containsKey(i)) {
         if (pieceLoc.get(i).equals("bKnight")) {
+          blackCheckLocations.add(i);
           return false;
         }
-      } else if (inBoundaries && inLine && pieceHeld.equals("bKing") && pieceLoc.containsKey(i)) {
+      } else if (inBoundaries && inLine && !currentlyWhite && pieceLoc.containsKey(i)) {
         if (pieceLoc.get(i).equals("wKnight")) {
+          whiteCheckLocations.add(i);
           return false;
         }
       }
@@ -80,19 +97,21 @@ class Check extends PieceUtils {
   private boolean checkPawn(int loc) {
     int[] blackPawnLoc = { loc - 9, loc - 7 };
     int[] whitePawnLoc = { loc + 9, loc + 7 };
-    if (pieceHeld.equals("wKing")) {
+    if (currentlyWhite) {
       // checks both possible locations that a pawn could be if the new location
       for (int i : blackPawnLoc) {
         if (0 <= i && pieceLoc.containsKey(i) && pieceLoc.get(i).equals("bPawn")
             && Math.abs((loc / 8) - (i / 8)) == 1) {
+          blackCheckLocations.add(i);
           return false;
         }
       }
-    } else if (pieceHeld.equals("bKing")) {
+    } else {
       // checks both possible locations that a pawn could be if the new location
       for (int i : whitePawnLoc) {
         if (i < 64 && pieceLoc.containsKey(i) && pieceLoc.get(i).equals("wPawn")
             && Math.abs((loc / 8) - (i / 8)) == 1) {
+          whiteCheckLocations.add(i);
           return false;
         }
       }
@@ -104,6 +123,10 @@ class Check extends PieceUtils {
     for (int i = kingLoc + increment; i >= 0 && i < BOARD_SIZE; i += increment) {
       // return false if the piece is a rook because the king isn't safe
       if (checking(i, "Rook")) {
+        if (currentlyWhite)
+          blackCheckLocations.add(kingLoc + increment);
+        else
+          whiteCheckLocations.add(kingLoc + increment);
         return false;
       } else if (pieceLoc.containsKey(i) && !pieceLoc.get(i).equals("wKing") && !pieceLoc.get(i).equals("bKing")) {
         return true;
@@ -117,6 +140,10 @@ class Check extends PieceUtils {
         && i / ROW_LENGTH == kingLoc / ROW_LENGTH; i += increment) {
       // return false if the piece is a rook because the king isn't safe
       if (checking(i, "Rook")) {
+        if (currentlyWhite)
+          blackCheckLocations.add(kingLoc + increment);
+        else
+          whiteCheckLocations.add(kingLoc + increment);
         return false;
       } else if (pieceLoc.containsKey(i) && !pieceLoc.get(i).equals("wKing") && !pieceLoc.get(i).equals("bKing")) {
         return true;
@@ -136,6 +163,10 @@ class Check extends PieceUtils {
       }
       // return false if the piece is a bishop because the king isn't safe
       if (checking(i, "Bishop")) {
+        if (currentlyWhite)
+          blackCheckLocations.add(kingLoc + increment);
+        else
+          whiteCheckLocations.add(kingLoc + increment);
         return false;
       } else if (pieceLoc.containsKey(i) && !pieceLoc.get(i).equals("wKing") && !pieceLoc.get(i).equals("bKing")) {
         return true;
@@ -145,8 +176,8 @@ class Check extends PieceUtils {
   }
 
   private boolean checking(int loc, String secondary) {
-    String opponentQueen = pieceHeld.equals("wKing") ? "bQueen" : "wQueen";
-    String opponentPiece = pieceHeld.equals("wKing") ? "b" + secondary : "w" + secondary;
+    String opponentQueen = currentlyWhite ? "bQueen" : "wQueen";
+    String opponentPiece = currentlyWhite ? "b" + secondary : "w" + secondary;
 
     if (pieceLoc.containsKey(loc)) {
       String pieceAtLoc = pieceLoc.get(loc);

@@ -122,6 +122,8 @@ public class Move extends PieceFunctionality {
             swapPiece(56, 58, wRook, "wRook");
           if (loc == 62 && canWhiteCastle2 && !whiteKingMoved)
             swapPiece(63, 61, wRook, "wRook");
+
+          whiteKingLocation = loc;
         }
         case "bKing" -> {
           // checking for castling and then moving the Knight
@@ -130,6 +132,8 @@ public class Move extends PieceFunctionality {
             swapPiece(0, 2, bRook, "bRook");
           if (loc == 6 && canBlackCastle1 && !blackKingMoved)
             swapPiece(7, 5, bRook, "bRook");
+
+          blackKingLocation = loc;
         }
       }
       swapPiece(location, loc, icon, pieceHeld);
@@ -137,7 +141,7 @@ public class Move extends PieceFunctionality {
       numberOfMoves++;
       checkBlackCastle();
       checkWhiteCastle();
-      displayMove(location);
+      displayMove(loc);
     }
   }
 
@@ -172,11 +176,22 @@ public class Move extends PieceFunctionality {
       }
       currentlyWhite = !currentlyWhite;
       numberOfMoves++;
+
+      if (pieceHeld.equals("bKing")) {
+        blackKingLocation = loc;
+      } else if (pieceHeld.equals("wKing")) {
+        whiteKingLocation = loc;
+      }
     } else {
       swapPiece(location, location, icon, pieceHeld);
       System.out.println("Choose a legal move bozo");
     }
-    displayMove(location);
+    displayMove(loc);
+  }
+
+  public static boolean checkForKingInCheck() {
+    Check check = new Check(currentlyWhite ? whiteKingLocation : blackKingLocation);
+    return check.checkForCheck(currentlyWhite ? whiteKingLocation : blackKingLocation);
   }
 
   private static void promotePawn(int loc, String color) {

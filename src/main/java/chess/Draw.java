@@ -99,6 +99,7 @@ public class Draw extends PieceUtils implements ActionListener {
     capturedPanel.add(capturedBlackPanel2);
 
     chessMovesPanel.setPreferredSize(new Dimension(175, 800));
+    chessMovesList.setBackground(Color.white.darker());
 
     titlePanel.add(textField);
 
@@ -152,6 +153,7 @@ public class Draw extends PieceUtils implements ActionListener {
     if (e.getSource() == forfeit) {
       if (forfeit.getText().equals("Forfeit")) {
         textField.setText(currentlyWhite ? "White Forfeited" : "Black Forfeited");
+        addMove(currentlyWhite ? "White Forfeited" : "Black Forfeited");
         font = forfeit.getFont();
         newFont = font.deriveFont(15.47f);
         forfeit.setFont(newFont);
@@ -175,7 +177,8 @@ public class Draw extends PieceUtils implements ActionListener {
         if (textField.getText().equals("White Forfeited") || textField.getText().equals("Black Forfeited")) {
           textField.setText("White's turn");
         }
-        for (int i = 0; i < numberOfMoves; i++) {
+        // <= because of the additional "White Forfeited or Black Forfeited" addition to the display
+        while (!defaultChessMoves.isEmpty()) {
           defaultChessMoves.remove(0);
           chessMovesPanel.revalidate();
           chessMovesPanel.repaint();
