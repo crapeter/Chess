@@ -26,7 +26,7 @@ public class Draw extends PieceUtils implements ActionListener {
 
   public void draw() {
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    frame.setSize(1075, 900);
+    frame.setSize(1000, 825);
     frame.setLocationRelativeTo(null);
     frame.setResizable(false);
 
@@ -53,11 +53,11 @@ public class Draw extends PieceUtils implements ActionListener {
       buttons[i].setBorder(new EmptyBorder(0, 0, 0, 0));
       if (!white) {
         buttons[i].setBackground(new Color(118, 150, 86));
-        init(buttons[i], new Color(118, 150, 86));
+        init(buttons[i]);
       }
       else {
         buttons[i].setBackground(new Color(238, 238, 210));
-        init(buttons[i], new Color(238, 238, 210));
+        init(buttons[i]);
       }
       if (i % 8 != 7)
         white = !white;
@@ -195,7 +195,7 @@ public class Draw extends PieceUtils implements ActionListener {
     }
   }
 
-  private void init(JButton button, Color color) {
+  private void init(JButton button) {
     button.addMouseListener(new MouseAdapter() {
       @Override
       public void mouseEntered(MouseEvent e) {
