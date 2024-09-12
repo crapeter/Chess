@@ -1,5 +1,7 @@
 package chess;
 
+import java.util.Timer;
+
 public class Move extends PieceFunctionality {
   private static boolean whiteKingMoved = false;
   private static boolean blackKingMoved = false;
@@ -68,15 +70,17 @@ public class Move extends PieceFunctionality {
         Rook.display();
         pickUpPiece(loc, pieceHeld);
       }
-      default -> System.out.println("How the fuck did you get here?");
     }
   }
 
   public static void empty(int loc) {
     if (!buttons[loc].getText().equals("a")) {
       swapPiece(location, location, icon, pieceHeld);
-      if (loc != location)
-        System.out.println("Choose a legal move bozo");
+      if (loc != location) {
+        Timer timer = new Timer();
+        timer.schedule(setTitle("Illegal move"), 0);
+        timer.schedule(setTitle(currentlyWhite ? "White's turn" : "Black's turn"), 1000);
+      }
     } else { // move is available
       switch (pieceHeld) {
         case "wPawn" -> {
@@ -137,6 +141,13 @@ public class Move extends PieceFunctionality {
         }
       }
       swapPiece(location, loc, icon, pieceHeld);
+      if (Check.causesCheck()) {
+        swapPiece(loc, location, icon, pieceHeld);
+        Timer timer = new Timer();
+        timer.schedule(setTitle("Illegal move"), 0);
+        timer.schedule(setTitle(currentlyWhite ? "White's turn" : "Black's turn"), 1000);
+        return;
+      }
       currentlyWhite = !currentlyWhite;
       numberOfMoves++;
       checkBlackCastle();
@@ -146,7 +157,7 @@ public class Move extends PieceFunctionality {
   }
 
   public static void take(int loc) {
-    String[] blackPieces = { "bBishop", "bKing", "bKnight", "bPawn", "bQueen", "bRook" };
+    String[] blackPieces = {"bBishop", "bKing", "bKnight", "bPawn", "bQueen", "bRook"};
     String currentPieceColor = "white";
     String takingPieceColor = "white";
 
@@ -171,8 +182,14 @@ public class Move extends PieceFunctionality {
         removePiece(loc, pieceLoc.get(loc), false);
         promotePawn(loc, "Black");
       } else {
-        removePiece(loc, pieceHeld, false);
         swapPiece(location, loc, icon, pieceHeld);
+        if (Check.causesCheck()) {
+          swapPiece(loc, location, icon, pieceHeld);
+          Timer timer = new Timer();
+          timer.schedule(setTitle("Illegal move"), 0);
+          timer.schedule(setTitle(currentlyWhite ? "White's turn" : "Black's turn"), 1000);
+          return;
+        }
       }
       currentlyWhite = !currentlyWhite;
       numberOfMoves++;
@@ -182,11 +199,13 @@ public class Move extends PieceFunctionality {
       } else if (pieceHeld.equals("wKing")) {
         whiteKingLocation = loc;
       }
+      displayMove(loc);
     } else {
+      Timer timer = new Timer();
+      timer.schedule(setTitle("Illegal move"), 0);
+      timer.schedule(setTitle(currentlyWhite ? "White's turn" : "Black's turn"), 1000);
       swapPiece(location, location, icon, pieceHeld);
-      System.out.println("Choose a legal move bozo");
     }
-    displayMove(loc);
   }
 
   public static void checkForKingInCheck() {
@@ -208,7 +227,6 @@ public class Move extends PieceFunctionality {
       if (!pieceLoc.containsKey(63) || (pieceLoc.containsKey(63) && !pieceLoc.get(63).equals("wRook")))
         canWhiteCastle2 = false;
       if (!pieceLoc.containsKey(60) || (pieceLoc.containsKey(60) && !pieceLoc.get(60).equals("wKing"))) {
-        System.out.println("Hello there");
         canWhiteCastle1 = false;
         canWhiteCastle2 = false;
         whiteKingMoved = true;
@@ -223,7 +241,6 @@ public class Move extends PieceFunctionality {
       if (!pieceLoc.containsKey(7) || pieceLoc.containsKey(7) && (!pieceLoc.get(7).equals("bRook")))
         canBlackCastle2 = false;
       if ((!pieceLoc.containsKey(4) || pieceLoc.containsKey(4) && (!pieceLoc.get(4).equals("bKing")))) {
-        System.out.println("Hello there");
         canBlackCastle1 = false;
         canBlackCastle2 = false;
         blackKingMoved = true;

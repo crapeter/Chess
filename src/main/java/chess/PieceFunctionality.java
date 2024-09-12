@@ -26,7 +26,7 @@ public class PieceFunctionality extends PieceUtils implements ActionListener {
   public void actionPerformed(ActionEvent e) {
     boolean whiteKing = false;
     boolean blackKing = false;
-    String[] whitePieces = { "wPawn", "wRook", "wKnight", "wBishop", "wQueen", "wKing" };
+    String[] whitePieces = {"wPawn", "wRook", "wKnight", "wBishop", "wQueen", "wKing"};
     List<String> whitePiece = Arrays.asList(whitePieces);
     for (int i = 0; i < 64; i++) {
       if (e.getSource() == buttons[i]) {
@@ -47,9 +47,6 @@ public class PieceFunctionality extends PieceUtils implements ActionListener {
           if ((currentlyWhite && whitePiece.contains(pieceLoc.get(i)))
               || (!currentlyWhite && !whitePiece.contains(pieceLoc.get(i)))) {
             Move.grab(i);
-          } else {
-            String color = currentlyWhite ? "white" : "black";
-            System.out.println("It is " + color + "'s turn to move");
           }
           break;
         } else if (pieceLoc.containsKey(i) && holdingPiece && !promoting) {
@@ -126,7 +123,6 @@ public class PieceFunctionality extends PieceUtils implements ActionListener {
       case "bKnight" -> temp = "Black Knight";
       case "wRook" -> temp = "White Rook";
       case "bRook" -> temp = "Black Rook";
-      default -> System.out.println("How the fuck did you get here?");
     }
     return temp;
   }

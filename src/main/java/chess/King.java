@@ -55,7 +55,7 @@ public class King extends PieceUtils {
     }
   }
 
-  private static boolean inLine(int locGiven, int distance) {
+  public static boolean inLine(int locGiven, int distance) {
     return Math.abs(location / 8 - locGiven / 8) == distance;
   }
 }

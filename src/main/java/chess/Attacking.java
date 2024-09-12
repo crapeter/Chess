@@ -33,7 +33,6 @@ public class Attacking extends PieceUtils {
         return vertical() || horizontal() || rightDiagonal() || leftDiagonal();
       }
       default -> {
-        System.out.println("The king can't attack another king");
         return false;
       }
     }

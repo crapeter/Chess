@@ -1,9 +1,13 @@
 package chess;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import javax.swing.plaf.basic.BasicButtonUI;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Pawn extends PieceFunctionality {
   public JFrame frame = new JFrame();
@@ -18,8 +22,8 @@ public class Pawn extends PieceFunctionality {
     frame.setLocationRelativeTo(null);
     frame.setResizable(false);
 
-    textField.setBackground(Color.white.darker());
-    textField.setForeground(Color.black);
+    textField.setBackground(Color.darkGray);
+    textField.setForeground(Color.white);
     textField.setFont(new Font("Verdana", Font.PLAIN, 30));
     textField.setHorizontalAlignment(JLabel.CENTER);
     textField.setText("Pawn Transformation");
@@ -38,10 +42,12 @@ public class Pawn extends PieceFunctionality {
       panel.add(buttons[i]);
       buttons[i].setFocusable(false);
       buttons[i].addActionListener(this);
-      buttons[i].setBackground(Color.white);
+      buttons[i].setBackground(new Color(255, 195, 128));
+      buttons[i].setBorder(new LineBorder(Color.black, 1));
       buttons[i].setUI(new BasicButtonUI());
       buttons[i].setText(color + pieceNames[i]);
       buttons[i].setFont(new Font("Verdana", Font.PLAIN, 20));
+      init(buttons[i]);
     }
     titlePanel.add(textField);
     frame.add(titlePanel, BorderLayout.NORTH);
@@ -71,5 +77,19 @@ public class Pawn extends PieceFunctionality {
   public static void display(String name, ImageIcon newIcon) {
     promoting = false;
     placePiece(location, newIcon, name);
+  }
+
+  private void init(JButton button) {
+    button.addMouseListener(new MouseAdapter() {
+      @Override
+      public void mouseEntered(MouseEvent e) {
+        button.setBackground(new Color(255, 195, 128).darker());
+      }
+
+      @Override
+      public void mouseExited(MouseEvent e) {
+        button.setBackground(new Color(255, 195, 128));
+      }
+    });
   }
 }

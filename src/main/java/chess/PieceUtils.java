@@ -8,8 +8,6 @@ import java.util.List;
 public abstract class PieceUtils implements SetupVars, Images {
   public static int location = 0;
   public static int numberOfMoves = 0;
-  public static int whiteKingLocation = 60;
-  public static int blackKingLocation = 4;
   public static boolean holdingPiece = false;
   public static boolean canBlackCastle1 = true;
   public static boolean canWhiteCastle1 = true;
@@ -20,8 +18,11 @@ public abstract class PieceUtils implements SetupVars, Images {
   public static boolean currentlyWhite = true;
   public static String pieceHeld = "";
   public static ImageIcon icon = null;
-  public static Set<Integer> whiteCheckLocations = new HashSet<>();
-  public static Set<Integer> blackCheckLocations = new HashSet<>();
+
+  public static int whiteKingLocation = 60;
+  public static int blackKingLocation = 4;
+  public static HashMap<String, Integer> whiteCheckLocations = new HashMap<>();
+  public static HashMap<String, Integer> blackCheckLocations = new HashMap<>();
 
   private static ImageIcon takingIcon = null;
   private static final String[] whitePieces = { "wPawn", "wRook", "wKnight", "wBishop", "wQueen", "wKing" };
@@ -65,6 +66,7 @@ public abstract class PieceUtils implements SetupVars, Images {
     pieceHeld = pieceLoc.get(loc);
     location = loc;
     icon = newIcon;
+    buttons[loc].setBackground(Color.green.brighter());
   }
 
   public static void displayMoves(int loc, JButton[] buttons) {
@@ -106,6 +108,36 @@ public abstract class PieceUtils implements SetupVars, Images {
     }
   }
 
+  public static int getCheckDirection(int attackingLocation) {
+    int kingRow = currentlyWhite ? whiteKingLocation / 8 : blackKingLocation / 8;
+    int kingCol = currentlyWhite ? whiteKingLocation % 8 : blackKingLocation % 8;
+    int attackingRow = attackingLocation / 8;
+    int attackingCol = attackingLocation % 8;
+
+    int rowDiff = kingRow - attackingRow;
+    int colDiff = kingCol - attackingCol;
+
+    if (rowDiff == 0) {
+      return colDiff > 0 ? -1 : 1;
+    } else if (colDiff == 0) {
+      return rowDiff > 0 ? -8 : 8;
+    } else if (rowDiff == colDiff) {
+      return rowDiff > 0 ? -9 : 9;
+    } else if (rowDiff == -colDiff) {
+      return rowDiff > 0 ? -7 : 7;
+    }
+    return 0;
+  }
+
+  public static TimerTask setTitle(String title) {
+    return new TimerTask() {
+      @Override
+      public void run() {
+        textField.setText(title);
+      }
+    };
+  }
+
   private static ImageIcon getIcon(int loc) {
     switch (pieceLoc.get(loc)) {
       case "wPawn" -> takingIcon = wPawn;
@@ -120,7 +152,6 @@ public abstract class PieceUtils implements SetupVars, Images {
       case "bKnight" -> takingIcon = bKnight;
       case "wRook" -> takingIcon = wRook;
       case "bRook" -> takingIcon = bRook;
-      default -> System.out.println("How the fuck did you get here?");
     }
     return takingIcon;
   }
