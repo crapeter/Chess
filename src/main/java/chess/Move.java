@@ -1,5 +1,6 @@
 package chess;
 
+import javax.swing.*;
 import java.util.Timer;
 
 public class Move extends PieceFunctionality {
@@ -182,6 +183,8 @@ public class Move extends PieceFunctionality {
         removePiece(loc, pieceLoc.get(loc), false);
         promotePawn(loc, "Black");
       } else {
+        ImageIcon takingIcon = getIcon(loc);
+        String takingPiece = pieceLoc.get(loc);
         swapPiece(location, loc, icon, pieceHeld);
         if (Check.causesCheck()) {
           swapPiece(loc, location, icon, pieceHeld);
@@ -189,6 +192,8 @@ public class Move extends PieceFunctionality {
           timer.schedule(setTitle("Illegal move"), 0);
           timer.schedule(setTitle(currentlyWhite ? "White's turn" : "Black's turn"), 1000);
           return;
+        } else {
+          Draw.addCapturedPiece(takingIcon, takingPiece.startsWith("w"), takingPiece.contains("Pawn"));
         }
       }
       currentlyWhite = !currentlyWhite;

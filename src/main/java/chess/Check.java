@@ -130,6 +130,7 @@ class Check extends PieceUtils {
     for (int location : checkLocations) {
       ArrayList<Boolean> protectPerTile = new ArrayList<>();
       int dir = getCheckDirection(location);
+      if (dir == 0) continue;
       for (int i = kingLocation + dir; 0 <= i && i < 64; i += dir) {
         if ((dir == 9 || dir == -7) && i % 8 == 0) break;
         else if ((dir == -9 || dir == 7) && i % 8 == 7) break;

@@ -30,8 +30,8 @@ public class Draw extends PieceUtils implements ActionListener {
     frame.setLocationRelativeTo(null);
     frame.setResizable(false);
 
-    textField.setBackground(Color.black);
-    textField.setForeground(new Color(0, 66, 0));
+    textField.setBackground(new Color(118, 150, 86));
+    textField.setForeground(new Color(238, 238, 210));
     textField.setFont(new Font("Verdana", Font.PLAIN, 75));
     textField.setHorizontalAlignment(JLabel.CENTER);
     textField.setText("Chess");
@@ -77,20 +77,20 @@ public class Draw extends PieceUtils implements ActionListener {
     capturedBlackPanel2.setLayout(new BoxLayout(capturedBlackPanel2, BoxLayout.Y_AXIS));
     capturedBlackPanel2.setBackground(Color.white.darker());
 
-    forfeitPanel.setPreferredSize(new Dimension(800, 75));
-    forfeitPanel.setLayout(new BoxLayout(forfeitPanel, BoxLayout.PAGE_AXIS));
+    forfeitPanel.setPreferredSize(new Dimension(1000, 75));
     forfeitPanel.setBackground(Color.black);
 
     forfeit.setFocusable(false);
     forfeit.setLayout(new BoxLayout(forfeit, BoxLayout.PAGE_AXIS));
-    forfeit.setBackground(Color.red.darker());
-    forfeit.setPreferredSize(new Dimension(800, 200));
+    forfeit.setBackground(new Color(118, 150, 86));
+    forfeit.setPreferredSize(new Dimension(1000, 75));
     forfeit.addActionListener(this);
     forfeit.setText("Forfeit");
-    forfeit.setForeground(Color.black);
+    forfeit.setForeground(new Color(238, 238, 210));
     font = forfeit.getFont();
-    newFont = font.deriveFont(17f);
+    newFont = font.deriveFont(32f);
     forfeit.setFont(newFont);
+    fInit();
     forfeitPanel.add(forfeit);
 
     capturedPanel.add(capturedWhitePanel1);
@@ -109,7 +109,7 @@ public class Draw extends PieceUtils implements ActionListener {
     frame.add(forfeitPanel, BorderLayout.SOUTH);
     frame.add(chessMovesPanel, BorderLayout.WEST);
     frame.setVisible(true);
-    timer.schedule(task, 1500);
+    timer.schedule(task, 2000);
   }
 
   public static void addCapturedPiece(ImageIcon icon, boolean isWhitePiece, boolean isPawn) {
@@ -155,7 +155,7 @@ public class Draw extends PieceUtils implements ActionListener {
         textField.setText(currentlyWhite ? "White Forfeited" : "Black Forfeited");
         addMove(currentlyWhite ? "White Forfeited" : "Black Forfeited");
         font = forfeit.getFont();
-        newFont = font.deriveFont(15.47f);
+        newFont = font.deriveFont(32f);
         forfeit.setFont(newFont);
         forfeit.setText("Restart");
         gameOver = true;
@@ -168,7 +168,7 @@ public class Draw extends PieceUtils implements ActionListener {
         }
       } else {
         font = forfeit.getFont();
-        newFont = font.deriveFont(17f);
+        newFont = font.deriveFont(32f);
         forfeit.setFont(newFont);
         forfeit.setText("Forfeit");
         pieceLoc.clear();
@@ -177,7 +177,6 @@ public class Draw extends PieceUtils implements ActionListener {
         if (textField.getText().equals("White Forfeited") || textField.getText().equals("Black Forfeited")) {
           textField.setText("White's turn");
         }
-        // <= because of the additional "White Forfeited or Black Forfeited" addition to the display
         while (!defaultChessMoves.isEmpty()) {
           defaultChessMoves.remove(0);
           chessMovesPanel.revalidate();
@@ -209,6 +208,22 @@ public class Draw extends PieceUtils implements ActionListener {
       @Override
       public void mouseExited(MouseEvent e) {
         button.setBorder(new EmptyBorder(0, 0, 0, 0));
+      }
+    });
+  }
+
+  private void fInit() {
+    SetupVars.forfeit.setUI(new BasicButtonUI());
+    SetupVars.forfeit.setBorder(new EmptyBorder(0, 0, 0, 0));
+    SetupVars.forfeit.addMouseListener(new MouseAdapter() {
+      @Override
+      public void mouseEntered(MouseEvent e) {
+        SetupVars.forfeit.setBackground(new Color(118, 150, 86).darker());
+      }
+
+      @Override
+      public void mouseExited(MouseEvent e) {
+        SetupVars.forfeit.setBackground(new Color(118, 150, 86));
       }
     });
   }

@@ -37,7 +37,7 @@ public abstract class PieceUtils implements SetupVars, Images {
   }
 
   public static void removePiece(int loc, String pieceName, boolean enPas) {
-    boolean isWhitePiece = whitePiece.contains(pieceHeld);
+    boolean isWhitePiece = whitePiece.contains(pieceName);
     boolean isPawn = false;
     if (enPas) {
       takingIcon = pieceName.equals("wPawn") ? wPawn : bPawn;
@@ -138,7 +138,7 @@ public abstract class PieceUtils implements SetupVars, Images {
     };
   }
 
-  private static ImageIcon getIcon(int loc) {
+  public static ImageIcon getIcon(int loc) {
     switch (pieceLoc.get(loc)) {
       case "wPawn" -> takingIcon = wPawn;
       case "bPawn" -> takingIcon = bPawn;
