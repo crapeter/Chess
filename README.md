@@ -13,5 +13,3 @@ The move functions in each piece class are different from the move class (I thou
 I also added the interface setupVars to help consolidate variables that were being used in multiple class in which each class re-instantiated the variable each time. Using an interface for this is probably wrong but I don't really understand how interfaces work.
 
 There is a universal pawn class that is used whenever a pawn reaches the opposing sides border. This class will create a new JFrame according to the color of the pawn and send the result back to the board to update the pawn. This frame will update the pawn to one of the four choices that the pawn has when transforming (rook, queen, knight, bishop). Likewise, the rook, bishop, and queen all share a abstract parent class that provides the moves available for the pieces. This allows each the rook and bishop to only have to call one function from their parent while the queen calls both functions.
-
-If anyone actually sees this and decides to comb through the code, feel free to make fun of it, because it is hideous. 
